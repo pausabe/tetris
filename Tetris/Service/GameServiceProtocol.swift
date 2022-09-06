@@ -7,11 +7,9 @@
 
 import Foundation
 
-protocol StepsServiceProtocol{
+protocol GameServiceProtocol{
     var horizontalStep: Int { get }
     var verticalStep: Int { get }
     var startingPositionX: Int { get }
     var startingPositionY: Int { get }
-    
-    func increaseSpeed()
 }

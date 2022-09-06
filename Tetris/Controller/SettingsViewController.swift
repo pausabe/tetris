@@ -8,7 +8,7 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -16,4 +16,5 @@ class SettingsViewController: UIViewController {
     @IBAction func audioSwitchValueChanged(_ sender: UISwitch) {
         // TODO: implement something like store service
     }
+
 }

@@ -9,10 +9,6 @@ import Foundation
 import AVFoundation
 
 class MediaPlayerService : MediaPlayerServiceProtocol{
-    
-    static let shared = MediaPlayerService()
-    private init(){}
-    
     var audioPlayer : AVAudioPlayer!
     
     var test = "default"

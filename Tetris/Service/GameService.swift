@@ -7,20 +7,9 @@
 
 import Foundation
 
-class StepsService : StepsServiceProtocol {
-
-    static let shared = StepsService()
-    private init(){}
-    
+public class GameService : GameServiceProtocol {
     var horizontalStep: Int = 30
     var verticalStep: Int = 40
     var startingPositionX: Int = 15
     var startingPositionY: Int = 15
-    
-    private var speedStep = 1
-    
-    func increaseSpeed() {
-        verticalStep += speedStep
-    }
-    
 }

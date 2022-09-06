@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Tetrominio{
-    var currentPositionX = 0
-    var currentPositionY = 0
+struct Tetrominio{
+    var currentBoardPositionX = 0
+    var currentBoardPositionY = 0
 }

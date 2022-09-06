@@ -8,8 +8,10 @@
 import Foundation
 
 protocol GameServiceProtocol{
-    var horizontalStep: Int { get }
-    var verticalStep: Int { get }
-    var startingPositionX: Int { get }
-    var startingPositionY: Int { get }
+    var currentState: GameState { get }
+    var currentTetromino: Tetrominio? { get }
+    
+    func play()
+    func pause()
+    func stop()
 }

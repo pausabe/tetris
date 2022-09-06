@@ -28,6 +28,11 @@
 		5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */; };
 		5F48582E28C733A600BD5BEE /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48582D28C733A600BD5BEE /* ServiceLocator.swift */; };
 		5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */; };
+		5F48583328C7466200BD5BEE /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583228C7466200BD5BEE /* TimerService.swift */; };
+		5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */; };
+		5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */; };
+		5F48583928C7723800BD5BEE /* BoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583828C7723800BD5BEE /* BoardService.swift */; };
+		5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +104,11 @@
 		5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceTests.swift; sourceTree = "<group>"; };
 		5F48582D28C733A600BD5BEE /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorServiceTests.swift; sourceTree = "<group>"; };
+		5F48583228C7466200BD5BEE /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
+		5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceProtocol.swift; sourceTree = "<group>"; };
+		5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceProtocol.swift; sourceTree = "<group>"; };
+		5F48583828C7723800BD5BEE /* BoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardService.swift; sourceTree = "<group>"; };
+		5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +208,10 @@
 				5F4857E728C3A33F00BD5BEE /* MediaPlayerService.swift */,
 				5F48581628C5E69900BD5BEE /* GameServiceProtocol.swift */,
 				5F48581828C5E6D700BD5BEE /* GameService.swift */,
+				5F48583228C7466200BD5BEE /* TimerService.swift */,
+				5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */,
+				5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */,
+				5F48583828C7723800BD5BEE /* BoardService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -216,6 +230,7 @@
 			children = (
 				5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */,
 				5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */,
+				5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */,
 			);
 			path = TetrisTests;
 			sourceTree = "<group>";
@@ -406,14 +421,18 @@
 				5F4857CF28BFAACF00BD5BEE /* MainViewController.swift in Sources */,
 				5F4857E828C3A33F00BD5BEE /* MediaPlayerService.swift in Sources */,
 				5F48581F28C64DA400BD5BEE /* Board.swift in Sources */,
+				5F48583328C7466200BD5BEE /* TimerService.swift in Sources */,
 				5F48582E28C733A600BD5BEE /* ServiceLocator.swift in Sources */,
 				5F48581D28C63C1500BD5BEE /* SettingsViewController.swift in Sources */,
 				5F48581728C5E69900BD5BEE /* GameServiceProtocol.swift in Sources */,
 				5F4857CB28BFAACF00BD5BEE /* AppDelegate.swift in Sources */,
+				5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */,
 				5F48581328C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift in Sources */,
+				5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */,
 				5F48581928C5E6D700BD5BEE /* GameService.swift in Sources */,
 				5F4857CD28BFAACF00BD5BEE /* SceneDelegate.swift in Sources */,
 				5F48581528C5E62800BD5BEE /* Tetrominio.swift in Sources */,
+				5F48583928C7723800BD5BEE /* BoardService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +456,7 @@
 			files = (
 				5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */,
 				5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */,
+				5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

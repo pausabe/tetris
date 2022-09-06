@@ -14,12 +14,10 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var test: UIView!
     
-    // TODO: move timer to a sevice
-    var timer = Timer()
-    var timerRunning : Bool = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // TODO: subcribe to GameService events
         
         addServicesToLocator()
         loadDependencies()
@@ -40,21 +38,16 @@ class MainViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        pauseGame()
+        gameService.pause()
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
-        
         mediaPlayerService.playSoundtrack()
-        test.frame.origin.x = CGFloat(gameService.startingPositionX)
-        test.frame.origin.y = CGFloat(gameService.startingPositionY)
-        
-        timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(timerTick), userInfo: nil, repeats: true)
+        gameService.play()
+        drawCurrentTetromino()
     }
     
     @IBAction func leftButtonPressed(_ sender: UIButton) {
-        test.frame.origin.x -= CGFloat(gameService.verticalStep)
         /*
          TODO:
 
@@ -74,7 +67,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func rightButtonPressed(_ sender: UIButton) {
-        test.frame.origin.x += CGFloat(gameService.horizontalStep)
+        //test.frame.origin.x += CGFloat(gameService.horizontalStep)
         
         // TODO: same as left
     }
@@ -84,37 +77,12 @@ class MainViewController: UIViewController {
         self.performSegue(withIdentifier: "goToSettings", sender: self)
     }
     
-    @objc func timerTick(){
-        test.frame.origin.y += CGFloat(gameService.verticalStep)
-  
-        /*
-         TODO:
-         
-         GameService.MoveDown() // Same as move left
-         
-         var currentGameState = GameService.EvaluateBoardState()
-         if currentGameState == GameState.Over {
-            print all necessary to intorm user that the game is over
-         }
-         else{
-            redraw all board (maybe this its not always necessary...)
-         }
-         
-         // What EvaluateBoard does:
-         - Check if there is a row that can be deleted (checking at GameService.RowCompleted). And in case of a row deltion:
-            - Remove row from the GameService.BoardMap moving all the Tetronimos avobe the row
-            - Prepare the new current Tetronimo
-         - In case of not row deletion, check if position is at bottom. And in case of reached the bottom:
-            - Prepare the new current Tetronimo
-         - Check if its actually a game over (when we wanted to prepare the new current Tetronimo but it wasant possible to fit it) and updates the GameService.
-         - Return the GameService.GameState
-         
-         */
+    func drawCurrentTetromino(){
+        // TODO:
     }
     
-    func pauseGame(){
+    func drawEntireBoard(){
         // TODO:
-        timer.invalidate()
     }
     
 }

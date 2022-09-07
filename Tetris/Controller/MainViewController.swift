@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     func addServicesToLocator(){
         ServiceLocator.shared.addService(service: TimerService())
         ServiceLocator.shared.addService(service: BoardService())
+        ServiceLocator.shared.addService(service: TetrominoService())
         ServiceLocator.shared.addService(service: MediaPlayerService())
         ServiceLocator.shared.addService(service: GameService())
     }

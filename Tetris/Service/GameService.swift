@@ -14,6 +14,7 @@ enum GameState {
 public class GameService : GameServiceProtocol, TimerServiceDelegate {
     var timerService: TimerServiceProtocol! = nil
     var boardService: BoardServiceProtocol! = nil
+    var tetrominoService: TetrominoServiceProtocol! = nil
     
     var timeTickIntervalSeconds: Double = 1.5
     var currentTetromino: Tetromino?
@@ -22,39 +23,24 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         case left, right, down
     }
     
-    init(timerService: TimerServiceProtocol? = nil, boardService: BoardServiceProtocol? = nil){
+    init(timerService: TimerServiceProtocol? = nil,
+         boardService: BoardServiceProtocol? = nil,
+         tetrominoService: TetrominoServiceProtocol? = nil){
         self.timerService = timerService ?? ServiceLocator.shared.getService()! as TimerServiceProtocol
         self.boardService = boardService ?? ServiceLocator.shared.getService()! as BoardServiceProtocol
+        self.tetrominoService = tetrominoService ?? ServiceLocator.shared.getService()! as TetrominoServiceProtocol
         
         self.timerService?.delegate = self
     }
 
     func play() {
         if currentState == GameState.stopped{
-            currentTetromino = newRandomTetromino()
+            currentTetromino = tetrominoService.newRandomTetromino()
             moveCurrentTetrominoToStartPosition()
         }
         
         currentState = GameState.running
         timerService.start(intervalSeconds: timeTickIntervalSeconds)
-    }
-    
-    func newRandomTetromino() -> Tetromino{
-        // TODO: also we should determine the rotation randomly
-        switch(Int.random(in: 1...5)){
-            case 1:
-                return StraightTetromino()
-            case 2:
-                return SquareTetromino()
-            case 3:
-                return TTetromino()
-            case 4:
-                return LTetromino()
-            case 5:
-                return SkewTetromino()
-            default:
-                return StraightTetromino()
-            }
     }
     
     func moveCurrentTetrominoToStartPosition(){
@@ -123,10 +109,14 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
             else if direction == .right{
                 newColumn += 1
             }
-            return boardService.moveTetromino(
+            if boardService.moveTetromino(
                 tetromino: currentTetromino!,
                 newStartingTetrominoRow: newRow,
-                newStartingTetrominoColumn: newColumn)
+                newStartingTetrominoColumn: newColumn){
+                
+                currentTetromino?.setSquaresByFirstSquare(firstSquareRow: newRow, firstSquareColumn: newColumn)
+                return true
+            }
         }
         return false
     }

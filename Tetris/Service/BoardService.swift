@@ -61,9 +61,11 @@ class BoardService : BoardServiceProtocol{
         let oldFirstSquare = tetromino.firstSquare
         tetromino.setSquaresByFirstSquare(firstSquareRow: newStartingTetrominoRow, firstSquareColumn: newStartingTetrominoColumn)
         
+        clearTetrominoInBoard(tetromino: tetromino)
         let movementIsPossible = tetrominoIsInCorrectPlace(tetromino: tetromino)
         
         tetromino.setSquaresByFirstSquare(firstSquareRow: oldFirstSquare.boardRow, firstSquareColumn: oldFirstSquare.boardColumn)
+        setTetrominoInBoard(tetromino: tetromino)
         
         return movementIsPossible
     }
@@ -85,7 +87,7 @@ class BoardService : BoardServiceProtocol{
     }
     
     func tetrominoSquareIsAvailable(square: Square) -> Bool {
-        if square.boardRow < 0 || square.boardColumn < 0 {
+         if square.boardRow < 0 || square.boardColumn < 0 {
             return false
         }
         if square.boardRow > (board!.rowNumber - 1) || square.boardColumn > (board!.columnNumber - 1){

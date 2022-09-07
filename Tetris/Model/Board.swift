@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Board{
-    let rowNumber = 10
-    let columnNumber = 20
+    let rowNumber = 20
+    let columnNumber = 10
     var map = [[Color?]]()
 }

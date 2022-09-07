@@ -33,6 +33,9 @@
 		5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */; };
 		5F48583928C7723800BD5BEE /* BoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583828C7723800BD5BEE /* BoardService.swift */; };
 		5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */; };
+		5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */; };
+		5F48583F28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */; };
+		5F48584328C89B9E00BD5BEE /* TetrominoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584228C89B9E00BD5BEE /* TetrominoService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +112,9 @@
 		5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceProtocol.swift; sourceTree = "<group>"; };
 		5F48583828C7723800BD5BEE /* BoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardService.swift; sourceTree = "<group>"; };
 		5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceTests.swift; sourceTree = "<group>"; };
+		5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceMock.swift; sourceTree = "<group>"; };
+		5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceProtocol.swift; sourceTree = "<group>"; };
+		5F48584228C89B9E00BD5BEE /* TetrominoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +218,8 @@
 				5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */,
 				5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */,
 				5F48583828C7723800BD5BEE /* BoardService.swift */,
+				5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */,
+				5F48584228C89B9E00BD5BEE /* TetrominoService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -231,6 +239,7 @@
 				5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */,
 				5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */,
 				5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */,
+				5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */,
 			);
 			path = TetrisTests;
 			sourceTree = "<group>";
@@ -429,8 +438,10 @@
 				5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */,
 				5F48581328C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift in Sources */,
 				5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */,
+				5F48584328C89B9E00BD5BEE /* TetrominoService.swift in Sources */,
 				5F48581928C5E6D700BD5BEE /* GameService.swift in Sources */,
 				5F4857CD28BFAACF00BD5BEE /* SceneDelegate.swift in Sources */,
+				5F48583F28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift in Sources */,
 				5F48581528C5E62800BD5BEE /* Tetromino.swift in Sources */,
 				5F48583928C7723800BD5BEE /* BoardService.swift in Sources */,
 			);
@@ -455,6 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */,
+				5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */,
 				5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */,
 				5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */,
 			);

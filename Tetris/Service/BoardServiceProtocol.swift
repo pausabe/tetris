@@ -8,8 +8,10 @@
 import Foundation
 
 protocol BoardServiceProtocol{
+    var board: Board? { get }
     var tetrominoStartingColumn: Int { get }
     var tetrominoStartingRow: Int { get }
     
-    func setTetrominoInBoard(tetromino: Tetrominio)
+    func setTetrominoInBoard(tetromino: Tetromino)
+    func moveTetromino(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool
 }

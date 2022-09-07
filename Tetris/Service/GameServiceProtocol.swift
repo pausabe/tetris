@@ -9,9 +9,11 @@ import Foundation
 
 protocol GameServiceProtocol{
     var currentState: GameState { get }
-    var currentTetromino: Tetrominio? { get }
+    var currentTetromino: Tetromino? { get }
     
     func play()
     func pause()
     func stop()
+    func moveLeft() -> Bool
+    func moveRight() -> Bool
 }

@@ -20,7 +20,7 @@
 		5F48580728C3A52100BD5BEE /* APIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4857F228C3A52100BD5BEE /* APIKit.framework */; };
 		5F48580828C3A52100BD5BEE /* APIKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5F4857F228C3A52100BD5BEE /* APIKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5F48581328C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581228C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift */; };
-		5F48581528C5E62800BD5BEE /* Tetrominio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581428C5E62800BD5BEE /* Tetrominio.swift */; };
+		5F48581528C5E62800BD5BEE /* Tetromino.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581428C5E62800BD5BEE /* Tetromino.swift */; };
 		5F48581728C5E69900BD5BEE /* GameServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581628C5E69900BD5BEE /* GameServiceProtocol.swift */; };
 		5F48581928C5E6D700BD5BEE /* GameService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581828C5E6D700BD5BEE /* GameService.swift */; };
 		5F48581D28C63C1500BD5BEE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581C28C63C1500BD5BEE /* SettingsViewController.swift */; };
@@ -95,7 +95,7 @@
 		5F4857F228C3A52100BD5BEE /* APIKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F4857FB28C3A52100BD5BEE /* APIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F48581228C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerServiceProtocol.swift; sourceTree = "<group>"; };
-		5F48581428C5E62800BD5BEE /* Tetrominio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tetrominio.swift; sourceTree = "<group>"; };
+		5F48581428C5E62800BD5BEE /* Tetromino.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tetromino.swift; sourceTree = "<group>"; };
 		5F48581628C5E69900BD5BEE /* GameServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceProtocol.swift; sourceTree = "<group>"; };
 		5F48581828C5E6D700BD5BEE /* GameService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameService.swift; sourceTree = "<group>"; };
 		5F48581C28C63C1500BD5BEE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -219,7 +219,7 @@
 		5F4857EC28C3A37000BD5BEE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5F48581428C5E62800BD5BEE /* Tetrominio.swift */,
+				5F48581428C5E62800BD5BEE /* Tetromino.swift */,
 				5F48581E28C64DA400BD5BEE /* Board.swift */,
 			);
 			path = Model;
@@ -431,7 +431,7 @@
 				5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */,
 				5F48581928C5E6D700BD5BEE /* GameService.swift in Sources */,
 				5F4857CD28BFAACF00BD5BEE /* SceneDelegate.swift in Sources */,
-				5F48581528C5E62800BD5BEE /* Tetrominio.swift in Sources */,
+				5F48581528C5E62800BD5BEE /* Tetromino.swift in Sources */,
 				5F48583928C7723800BD5BEE /* BoardService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

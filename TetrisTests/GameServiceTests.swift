@@ -10,20 +10,6 @@ import XCTest
 
 class GameServiceTests: XCTestCase {
     
-    /*
-     XCTAssertNotNil asserts a variable is not nil.
-     XCTAssertTrue asserts a condition is true.
-     XCTAssertFalse asserts a condition is false.
-     XCTAssertEqual asserts two values are equal.
-     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }*/
-    
     var gameService: GameServiceProtocol! = nil
     
     override func setUp() {
@@ -47,6 +33,14 @@ class GameServiceTests: XCTestCase {
 
     func testOneHorizontalMovement() throws {
         startGame()
+        let startingTetrominoColumn = gameService.currentTetromino!.firstSquare.boardColumn
+        XCTAssertTrue(gameService!.moveLeft())
+        let movedTetrominoColumn = gameService.currentTetromino!.firstSquare.boardColumn
+        XCTAssertEqual(startingTetrominoColumn, movedTetrominoColumn - 1)
+    }
+    
+    func testTimerTickMakesTetrominoGoDown() throws{
+        
     }
 
 }

@@ -1,5 +1,5 @@
 //
-//  Tetrominio.swift
+//  Tetromino.swift
 //  Tetris
 //
 //  Created by Pau Sabé Martínez on 5/9/22.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-protocol Tetrominio{
+protocol Tetromino{
     var firstSquare: Square { get set }
     var secondSquare: Square { get set }
     var thirdSquare: Square { get set }
@@ -23,7 +23,7 @@ struct Square{
     var boardColumn = 0
 }
 
-class StraightTetromino: Tetrominio{
+class StraightTetromino: Tetromino{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()
@@ -42,7 +42,7 @@ class StraightTetromino: Tetrominio{
     }
 }
 
-class SquareTetromino: Tetrominio{
+class SquareTetromino: Tetromino{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()
@@ -61,7 +61,7 @@ class SquareTetromino: Tetrominio{
     }
 }
 
-class TTetromino: Tetrominio{
+class TTetromino: Tetromino{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()
@@ -80,7 +80,7 @@ class TTetromino: Tetrominio{
     }
 }
 
-class LTetromino: Tetrominio{
+class LTetromino: Tetromino{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()
@@ -99,7 +99,7 @@ class LTetromino: Tetrominio{
     }
 }
 
-class SkewTetromino: Tetrominio{
+class SkewTetromino: Tetromino{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()

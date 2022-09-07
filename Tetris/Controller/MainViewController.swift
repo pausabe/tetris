@@ -12,8 +12,6 @@ class MainViewController: UIViewController {
     var mediaPlayerService : MediaPlayerServiceProtocol! = nil
     var gameService : GameServiceProtocol! = nil
     
-    @IBOutlet weak var test: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,28 +48,10 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func leftButtonPressed(_ sender: UIButton) {
-        /*
-         TODO:
 
-         if GameServie.MakeLeftMovement(){
-            print the current Tetronimio with its new position
-         }
-         
-         // What MakeLeftMovement does:
-         - Try tro fit the current Tetronimo into the current board (checking other pieces and the borders)
-         - In case of a possible movement, it applyies into the GameServie.BoardMap
-            - Saves the color of the current Tetronimo into the MAP possitions
-            - Saves the new MAP position into the current Tetronimo model
-            - Check if with this movement there is some Row completed and it saves it into GameService.RowCompleted array
-         - Returns whether it was possible the movement
-         
-         */
     }
     
     @IBAction func rightButtonPressed(_ sender: UIButton) {
-        //test.frame.origin.x += CGFloat(gameService.horizontalStep)
-        
-        // TODO: same as left
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {

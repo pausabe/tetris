@@ -13,6 +13,8 @@ enum GameState {
 
 protocol GameServiceDelegate{
     func tetrominoHasMoved()
+    func newTetrominoAdded()
+    func gameOver()
 }
 
 public class GameService : GameServiceProtocol, TimerServiceDelegate {
@@ -22,7 +24,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     var tetrominoService: TetrominoServiceProtocol! = nil
     
     var delegate: GameServiceDelegate?
-    var timeTickIntervalSeconds: Double = 0.1 // 1.5
+    var timeTickIntervalSeconds: Double = 0.1 // TODO: increase over time 1.5
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
     enum movementDirections{
@@ -49,14 +51,8 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         timerService.start(intervalSeconds: timeTickIntervalSeconds)
     }
     
-    func moveCurrentTetrominoToStartPosition(){
-        if currentTetromino != nil{
-            currentTetromino?.setSquaresByFirstSquare(
-                firstSquareRow: boardService.tetrominoStartingRow,
-                firstSquareColumn: boardService.tetrominoStartingColumn)
-            
-            boardService.setTetrominoInBoard(tetromino: currentTetromino!)
-        }
+    @discardableResult func moveCurrentTetrominoToStartPosition() -> Bool {
+        return boardService.setTetrominoInStartingPlace(currentTetromino!)
     }
     
     func pause(){
@@ -80,30 +76,22 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     }
     
     func timerTick() {
-        move(direction: .down)
-        /*
-         TODO:
-         
-         GameService.MoveDown() // Same as move left
-         
-         var currentGameState = GameService.EvaluateBoardState()
-         if currentGameState == GameState.Over {
-            print all necessary to intorm user that the game is over
-         }
-         else{
-            redraw all board (maybe this its not always necessary...)
-         }
-         
-         // What EvaluateBoard does:
-         - Check if there is a row that can be deleted (checking at GameService.RowCompleted). And in case of a row deltion:
-            - Remove row from the GameService.BoardMap moving all the Tetronimos avobe the row
-            - Prepare the new current Tetronimo
-         - In case of not row deletion, check if position is at bottom. And in case of reached the bottom:
-            - Prepare the new current Tetronimo
-         - Check if its actually a game over (when we wanted to prepare the new current Tetronimo but it wasant possible to fit it) and updates the GameService.
-         - Return the GameService.GameState
-         
-         */
+        if !move(direction: .down){
+            /*
+             TODO:
+             - Check if there is a row that can be deleted (checking at GameService.RowCompleted). And in case of a row deltion:
+                - Remove row from the GameService.BoardMap moving all the Tetronimos avobe the row
+             */
+
+            currentTetromino = tetrominoService.newRandomTetromino()
+            moveCurrentTetrominoToStartPosition() ? delegate?.newTetrominoAdded() : setGameOver()
+        }
+    }
+    
+    func setGameOver(){
+        timerService.stop()
+        currentState = .stopped
+        delegate?.gameOver()
     }
     
     func moveLeft() -> Bool {
@@ -112,6 +100,10 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     
     func moveRight() -> Bool{
         return move(direction: .right)
+    }
+    
+    func moveDown() -> Bool{
+        return move(direction: .down)
     }
     
     @discardableResult func move(direction: movementDirections) -> Bool{

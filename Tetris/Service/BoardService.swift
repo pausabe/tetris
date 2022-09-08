@@ -34,6 +34,10 @@ class BoardService : BoardServiceProtocol{
         updateTetrominoSquares(tetromino: tetromino, boardPositionFill: nil)
     }
     
+    func setTetrominoInStartingPlace(_ tetromino: Tetromino) -> Bool {
+        moveTetromino(tetromino: tetromino, newStartingTetrominoRow: tetrominoStartingRow, newStartingTetrominoColumn: tetrominoStartingColumn)
+    }
+    
     func setTetrominoInBoard(tetromino: Tetromino) {
         updateTetrominoSquares(tetromino: tetromino, boardPositionFill: tetromino.color)
     }

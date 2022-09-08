@@ -17,4 +17,5 @@ protocol GameServiceProtocol{
     func stop()
     @discardableResult func moveLeft() -> Bool
     @discardableResult func moveRight() -> Bool
+    @discardableResult func moveDown() -> Bool
 }

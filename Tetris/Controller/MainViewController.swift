@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 class MainViewController: UIViewController, GameServiceDelegate {
-    
+
     var mediaPlayerService : MediaPlayerServiceProtocol! = nil
     var gameService : GameServiceProtocol! = nil
     
@@ -93,6 +93,16 @@ class MainViewController: UIViewController, GameServiceDelegate {
         eraseCurrentTetrominoLastPosition()
         drawCurrentTetromino()
         lastTetrominoPosition = gameService!.currentTetromino!.squares
+    }
+    
+    func newTetrominoAdded() {
+        drawCurrentTetromino()
+        lastTetrominoPosition = gameService!.currentTetromino!.squares
+    }
+    
+    func gameOver() {
+        // TODO:
+        print("game over")
     }
     
     // TODO: move all board view to another controller

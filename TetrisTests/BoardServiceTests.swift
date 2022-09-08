@@ -10,7 +10,7 @@ import XCTest
 
 class BoardServiceTests: XCTestCase {
     
-    var boardService: BoardServiceProtocol? = nil
+    var boardService: BoardService? = nil
     var tetromino: Tetromino? = nil
     
     override func setUp() {
@@ -18,10 +18,10 @@ class BoardServiceTests: XCTestCase {
     }
 
     func testSetTetromino() throws {
-        XCTAssertNotNil(boardService!.board!.map[tetromino!.firstSquare.boardRow][tetromino!.firstSquare.boardColumn])
-        XCTAssertNotNil(boardService!.board!.map[tetromino!.secondSquare.boardRow][tetromino!.secondSquare.boardColumn])
-        XCTAssertNotNil(boardService!.board!.map[tetromino!.thirdSquare.boardRow][tetromino!.thirdSquare.boardColumn])
-        XCTAssertNotNil(boardService!.board!.map[tetromino!.fourthSquare.boardRow][tetromino!.fourthSquare.boardColumn])
+        XCTAssertNotNil(boardService!.board!.map[tetromino!.squares.firstSquare.boardRow][tetromino!.squares.firstSquare.boardColumn])
+        XCTAssertNotNil(boardService!.board!.map[tetromino!.squares.secondSquare.boardRow][tetromino!.squares.secondSquare.boardColumn])
+        XCTAssertNotNil(boardService!.board!.map[tetromino!.squares.thirdSquare.boardRow][tetromino!.squares.thirdSquare.boardColumn])
+        XCTAssertNotNil(boardService!.board!.map[tetromino!.squares.fourthSquare.boardRow][tetromino!.squares.fourthSquare.boardColumn])
     }
     
     func setFirstTetrominoInPlace(){
@@ -35,9 +35,9 @@ class BoardServiceTests: XCTestCase {
     }
     
     func testCorrectTetrominoMovement() throws {
-        let oldRow = tetromino!.firstSquare.boardRow
+        let oldRow = tetromino!.squares.firstSquare.boardRow
         let newRow = oldRow + 1
-        let column = tetromino!.firstSquare.boardColumn
+        let column = tetromino!.squares.firstSquare.boardColumn
         let movementResult = boardService!.moveTetromino(tetromino: tetromino!, newStartingTetrominoRow: newRow, newStartingTetrominoColumn: column)
         XCTAssertTrue(movementResult)
         XCTAssertNil(boardService!.board!.map[oldRow][column])
@@ -45,8 +45,8 @@ class BoardServiceTests: XCTestCase {
     }
     
     func testOutsideBoardTetrominoMovement() throws {
-        let row = tetromino!.firstSquare.boardRow
-        let column = tetromino!.firstSquare.boardColumn
+        let row = tetromino!.squares.firstSquare.boardRow
+        let column = tetromino!.squares.firstSquare.boardColumn
         let movementResult = boardService!.moveTetromino(tetromino: tetromino!, newStartingTetrominoRow: row + boardService!.board!.rowNumber, newStartingTetrominoColumn: column)
         XCTAssertFalse(movementResult)
         XCTAssertNotNil(boardService!.board!.map[row][column])
@@ -55,11 +55,11 @@ class BoardServiceTests: XCTestCase {
     func testCollidingTetrominoMovement() throws {
         // Placing a Square below the Straight one
         let secondTetromino = SquareTetromino()
-        let firstMovementResult = boardService!.moveTetromino(tetromino: secondTetromino, newStartingTetrominoRow: tetromino!.firstSquare.boardRow + 1, newStartingTetrominoColumn: tetromino!.firstSquare.boardColumn)
+        let firstMovementResult = boardService!.moveTetromino(tetromino: secondTetromino, newStartingTetrominoRow: tetromino!.squares.firstSquare.boardRow + 1, newStartingTetrominoColumn: tetromino!.squares.firstSquare.boardColumn)
         XCTAssertTrue(firstMovementResult)
         
         // Moving the Straight over the Square
-        let secondMovementResult = boardService!.moveTetromino(tetromino: tetromino!, newStartingTetrominoRow: tetromino!.firstSquare.boardRow + 1, newStartingTetrominoColumn: tetromino!.firstSquare.boardColumn)
+        let secondMovementResult = boardService!.moveTetromino(tetromino: tetromino!, newStartingTetrominoRow: tetromino!.squares.firstSquare.boardRow + 1, newStartingTetrominoColumn: tetromino!.squares.firstSquare.boardColumn)
         XCTAssertFalse(secondMovementResult)
     }
 }

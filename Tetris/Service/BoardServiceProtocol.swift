@@ -12,6 +12,7 @@ protocol BoardServiceProtocol{
     var tetrominoStartingColumn: Int { get }
     var tetrominoStartingRow: Int { get }
     
-    func setTetrominoInBoard(tetromino: Tetromino)
+    func setTetrominoInStartingPlace(_ tetromino: Tetromino) -> Bool
+    //func setTetrominoInBoard(tetromino: Tetromino)
     func moveTetromino(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool
 }

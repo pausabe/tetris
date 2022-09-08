@@ -12,11 +12,15 @@ class GameServiceTests: XCTestCase {
     
     var gameService: GameServiceProtocol! = nil
     var tetrominoServiceMock: TetrominoServiceMock! = nil
+    var timerService: TimerServiceMock! = nil
     
     override func setUp() {
-        // TODO: mock Timer Service
         tetrominoServiceMock = TetrominoServiceMock()
-        gameService = GameService(tetrominoService: tetrominoServiceMock)
+        timerService = TimerServiceMock()
+        gameService = GameService(
+            timerService: timerService,
+            boardService: BoardService(rows: 20, columns: 10),
+            tetrominoService: tetrominoServiceMock)
     }
     
     func testStartGame() throws {
@@ -67,7 +71,11 @@ class GameServiceTests: XCTestCase {
     }
     
     func testTimerTickMakesTetrominoGoDown() throws{
-        
+        startGame()
+        let startingTetrominoRow = gameService.currentTetromino!.firstSquare.boardRow
+        timerService.forceTimerTick()
+        let movedTetrominoRow = gameService.currentTetromino!.firstSquare.boardRow
+        XCTAssertEqual(startingTetrominoRow + 1, movedTetrominoRow)
     }
 
 }

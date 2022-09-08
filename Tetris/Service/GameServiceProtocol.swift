@@ -10,10 +10,11 @@ import Foundation
 protocol GameServiceProtocol{
     var currentState: GameState { get }
     var currentTetromino: Tetromino? { get }
+    var delegate: GameServiceDelegate? { get set }
     
     func play()
     func pause()
     func stop()
-    func moveLeft() -> Bool
-    func moveRight() -> Bool
+    @discardableResult func moveLeft() -> Bool
+    @discardableResult func moveRight() -> Bool
 }

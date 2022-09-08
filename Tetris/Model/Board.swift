@@ -9,7 +9,14 @@ import Foundation
 import SwiftUI
 
 struct Board{
-    let rowNumber = 20
-    let columnNumber = 10
-    var map = [[Color?]]()
+    var rowNumber = 0
+    var columnNumber = 0
+    var map = [[UIColor?]]()
+    
+    init(rows: Int,
+         columns: Int){
+        rowNumber = rows
+        columnNumber = columns
+        map = Array(repeating: Array(repeating: nil, count: columnNumber), count: rows)
+    }
 }

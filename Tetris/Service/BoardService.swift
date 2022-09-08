@@ -13,14 +13,16 @@ class BoardService : BoardServiceProtocol{
     var tetrominoStartingColumn: Int = 0
     var tetrominoStartingRow: Int = 0
     
-    init(){
-        initBoardMap()
+    init(rows: Int,
+         columns: Int){
+        initBoardMap(rows: rows, columns: columns)
         setTetrominoStartPosition()
     }
     
-    func initBoardMap(){
-        board = Board()
-        board!.map = Array(repeating: Array(repeating: nil, count: board!.columnNumber), count: board!.rowNumber)
+    func initBoardMap(rows: Int,
+                      columns: Int){
+        board = Board(rows: rows,
+                      columns: columns)
     }
     
     func setTetrominoStartPosition(){
@@ -36,11 +38,11 @@ class BoardService : BoardServiceProtocol{
         updateTetrominoSquares(tetromino: tetromino, boardPositionFill: tetromino.color)
     }
     
-    func updateTetrominoSquares(tetromino: Tetromino, boardPositionFill: Color?){
-        board!.map[tetromino.firstSquare.boardRow][tetromino.firstSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.secondSquare.boardRow][tetromino.secondSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.thirdSquare.boardRow][tetromino.thirdSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.fourthSquare.boardRow][tetromino.fourthSquare.boardColumn] = boardPositionFill
+    func updateTetrominoSquares(tetromino: Tetromino, boardPositionFill: UIColor?){
+        board!.map[tetromino.squares.firstSquare.boardRow][tetromino.squares.firstSquare.boardColumn] = boardPositionFill
+        board!.map[tetromino.squares.secondSquare.boardRow][tetromino.squares.secondSquare.boardColumn] = boardPositionFill
+        board!.map[tetromino.squares.thirdSquare.boardRow][tetromino.squares.thirdSquare.boardColumn] = boardPositionFill
+        board!.map[tetromino.squares.fourthSquare.boardRow][tetromino.squares.fourthSquare.boardColumn] = boardPositionFill
     }
     
     func moveTetromino(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool{
@@ -58,10 +60,10 @@ class BoardService : BoardServiceProtocol{
     }
     
     func checkMovementPossibility(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool{
-        let oldFirstSquare = tetromino.firstSquare
+        let oldFirstSquare = tetromino.squares.firstSquare
+        clearTetrominoInBoard(tetromino: tetromino)
         tetromino.setSquaresByFirstSquare(firstSquareRow: newStartingTetrominoRow, firstSquareColumn: newStartingTetrominoColumn)
         
-        clearTetrominoInBoard(tetromino: tetromino)
         let movementIsPossible = tetrominoIsInCorrectPlace(tetromino: tetromino)
         
         tetromino.setSquaresByFirstSquare(firstSquareRow: oldFirstSquare.boardRow, firstSquareColumn: oldFirstSquare.boardColumn)
@@ -71,16 +73,16 @@ class BoardService : BoardServiceProtocol{
     }
     
     func tetrominoIsInCorrectPlace(tetromino: Tetromino) -> Bool {
-        if !tetrominoSquareIsAvailable(square: tetromino.firstSquare){
+        if !tetrominoSquareIsAvailable(square: tetromino.squares.firstSquare){
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.secondSquare) {
+        if !tetrominoSquareIsAvailable(square: tetromino.squares.secondSquare) {
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.thirdSquare){
+        if !tetrominoSquareIsAvailable(square: tetromino.squares.thirdSquare){
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.fourthSquare){
+        if !tetrominoSquareIsAvailable(square: tetromino.squares.fourthSquare){
             return false
         }
         return true

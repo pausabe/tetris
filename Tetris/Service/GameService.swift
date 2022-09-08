@@ -11,11 +11,17 @@ enum GameState {
     case stopped, running, paused
 }
 
+protocol GameServiceDelegate{
+    func tetrominoHasMoved()
+}
+
 public class GameService : GameServiceProtocol, TimerServiceDelegate {
+    
     var timerService: TimerServiceProtocol! = nil
     var boardService: BoardServiceProtocol! = nil
     var tetrominoService: TetrominoServiceProtocol! = nil
     
+    var delegate: GameServiceDelegate?
     var timeTickIntervalSeconds: Double = 1.5
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
@@ -65,7 +71,16 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         timerService.stop()
     }
     
+    func getBoardRows() -> Int {
+        boardService.board!.rowNumber
+    }
+    
+    func getBoardColumns() -> Int {
+        boardService.board!.columnNumber
+    }
+    
     func timerTick() {
+        move(direction: .down)
         /*
          TODO:
          
@@ -99,10 +114,10 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         return move(direction: .right)
     }
     
-    func move(direction: movementDirections) -> Bool{
+    @discardableResult func move(direction: movementDirections) -> Bool{
         if currentTetromino != nil{
-            let newRow = currentTetromino!.firstSquare.boardRow + (direction == .down ? 1 : 0)
-            var newColumn = currentTetromino!.firstSquare.boardColumn
+            let newRow = currentTetromino!.squares.firstSquare.boardRow + (direction == .down ? 1 : 0)
+            var newColumn = currentTetromino!.squares.firstSquare.boardColumn
             if direction == .left{
                 newColumn -= 1
             }
@@ -115,6 +130,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
                 newStartingTetrominoColumn: newColumn){
                 
                 currentTetromino?.setSquaresByFirstSquare(firstSquareRow: newRow, firstSquareColumn: newColumn)
+                delegate?.tetrominoHasMoved()
                 return true
             }
         }

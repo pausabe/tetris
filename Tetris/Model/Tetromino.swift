@@ -9,11 +9,8 @@ import Foundation
 import SwiftUI
 
 protocol Tetromino{
-    var firstSquare: Square { get set }
-    var secondSquare: Square { get set }
-    var thirdSquare: Square { get set }
-    var fourthSquare: Square { get set }
-    var color: Color { get }
+    var squares: TetrominoSquares { get set }
+    var color: UIColor { get }
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int)
 }
@@ -23,97 +20,89 @@ struct Square{
     var boardColumn = 0
 }
 
-class StraightTetromino: Tetromino{
+struct TetrominoSquares{
     var firstSquare = Square()
     var secondSquare = Square()
     var thirdSquare = Square()
     var fourthSquare = Square()
-    let color = Color.blue
+}
+
+class StraightTetromino: Tetromino{
+    var squares = TetrominoSquares()
+    let color = UIColor.blue
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int){
-        firstSquare.boardRow = firstSquareRow
-        firstSquare.boardColumn = firstSquareColumn
-        secondSquare.boardRow = firstSquare.boardRow
-        secondSquare.boardColumn = firstSquare.boardColumn + 1
-        thirdSquare.boardRow = firstSquare.boardRow
-        thirdSquare.boardColumn = firstSquare.boardColumn + 2
-        fourthSquare.boardRow = firstSquare.boardRow
-        fourthSquare.boardColumn = firstSquare.boardColumn + 3
+        squares.firstSquare.boardRow = firstSquareRow
+        squares.firstSquare.boardColumn = firstSquareColumn
+        squares.secondSquare.boardRow = squares.firstSquare.boardRow
+        squares.secondSquare.boardColumn = squares.firstSquare.boardColumn + 1
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow
+        squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn + 2
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow
+        squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 3
     }
 }
 
 class SquareTetromino: Tetromino{
-    var firstSquare = Square()
-    var secondSquare = Square()
-    var thirdSquare = Square()
-    var fourthSquare = Square()
-    let color = Color.yellow
+    var squares = TetrominoSquares()
+    let color = UIColor.yellow
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int){
-        firstSquare.boardRow = firstSquareRow
-        firstSquare.boardColumn = firstSquareColumn
-        secondSquare.boardRow = firstSquare.boardRow
-        secondSquare.boardColumn = firstSquare.boardColumn + 1
-        thirdSquare.boardRow = firstSquare.boardRow + 1
-        thirdSquare.boardColumn = firstSquare.boardColumn
-        fourthSquare.boardRow = firstSquare.boardRow + 1
-        fourthSquare.boardColumn = firstSquare.boardColumn + 1
+        squares.firstSquare.boardRow = firstSquareRow
+        squares.firstSquare.boardColumn = firstSquareColumn
+        squares.secondSquare.boardRow = squares.firstSquare.boardRow
+        squares.secondSquare.boardColumn = squares.firstSquare.boardColumn + 1
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow + 1
+        squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 1
+        squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 1
     }
 }
 
 class TTetromino: Tetromino{
-    var firstSquare = Square()
-    var secondSquare = Square()
-    var thirdSquare = Square()
-    var fourthSquare = Square()
-    let color = Color.purple
+    var squares = TetrominoSquares()
+    let color = UIColor.purple
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int){
-        firstSquare.boardRow = firstSquareRow
-        firstSquare.boardColumn = firstSquareColumn
-        secondSquare.boardRow = firstSquare.boardRow
-        secondSquare.boardColumn = firstSquare.boardColumn + 1
-        thirdSquare.boardRow = firstSquare.boardRow
-        thirdSquare.boardColumn = firstSquare.boardColumn + 2
-        fourthSquare.boardRow = firstSquare.boardRow + 1
-        fourthSquare.boardColumn = firstSquare.boardColumn + 1
+        squares.firstSquare.boardRow = firstSquareRow
+        squares.firstSquare.boardColumn = firstSquareColumn
+        squares.secondSquare.boardRow = squares.firstSquare.boardRow
+        squares.secondSquare.boardColumn = squares.firstSquare.boardColumn + 1
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow
+        squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn + 2
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 1
+        squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 1
     }
 }
 
 class LTetromino: Tetromino{
-    var firstSquare = Square()
-    var secondSquare = Square()
-    var thirdSquare = Square()
-    var fourthSquare = Square()
-    let color = Color.orange
+    var squares = TetrominoSquares()
+    let color = UIColor.orange
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int){
-        firstSquare.boardRow = firstSquareRow
-        firstSquare.boardColumn = firstSquareColumn
-        secondSquare.boardRow = firstSquare.boardRow + 1
-        secondSquare.boardColumn = firstSquare.boardColumn
-        thirdSquare.boardRow = firstSquare.boardRow + 2
-        thirdSquare.boardColumn = firstSquare.boardColumn
-        fourthSquare.boardRow = firstSquare.boardRow + 3
-        fourthSquare.boardColumn = firstSquare.boardColumn + 1
+        squares.firstSquare.boardRow = firstSquareRow
+        squares.firstSquare.boardColumn = firstSquareColumn
+        squares.secondSquare.boardRow = squares.firstSquare.boardRow + 1
+        squares.secondSquare.boardColumn = squares.firstSquare.boardColumn
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow + 2
+        squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 2
+        squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 1
     }
 }
 
 class SkewTetromino: Tetromino{
-    var firstSquare = Square()
-    var secondSquare = Square()
-    var thirdSquare = Square()
-    var fourthSquare = Square()
-    let color = Color.green
+    var squares = TetrominoSquares()
+    let color = UIColor.green
     
     func setSquaresByFirstSquare(firstSquareRow: Int, firstSquareColumn: Int){
-        firstSquare.boardRow = firstSquareRow
-        firstSquare.boardColumn = firstSquareColumn
-        secondSquare.boardRow = firstSquare.boardRow + 1
-        secondSquare.boardColumn = firstSquare.boardColumn
-        thirdSquare.boardRow = firstSquare.boardRow + 2
-        thirdSquare.boardColumn = firstSquare.boardColumn + 1
-        fourthSquare.boardRow = firstSquare.boardRow + 3
-        fourthSquare.boardColumn = firstSquare.boardColumn + 1
+        squares.firstSquare.boardRow = firstSquareRow
+        squares.firstSquare.boardColumn = firstSquareColumn
+        squares.secondSquare.boardRow = squares.firstSquare.boardRow + 1
+        squares.secondSquare.boardColumn = squares.firstSquare.boardColumn
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow + 2
+        squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn + 1
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 3
+        squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 1
     }
 }

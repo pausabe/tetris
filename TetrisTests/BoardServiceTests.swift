@@ -25,7 +25,7 @@ class BoardServiceTests: XCTestCase {
     }
     
     func setFirstTetrominoInPlace(){
-        boardService = BoardService()
+        boardService = BoardService(rows: 20, columns: 10)
         tetromino = StraightTetromino()
         
         tetromino!.setSquaresByFirstSquare(

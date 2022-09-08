@@ -36,6 +36,7 @@
 		5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */; };
 		5F48583F28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */; };
 		5F48584328C89B9E00BD5BEE /* TetrominoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584228C89B9E00BD5BEE /* TetrominoService.swift */; };
+		5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +116,7 @@
 		5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceMock.swift; sourceTree = "<group>"; };
 		5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceProtocol.swift; sourceTree = "<group>"; };
 		5F48584228C89B9E00BD5BEE /* TetrominoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoService.swift; sourceTree = "<group>"; };
+		5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceMock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,7 +241,7 @@
 				5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */,
 				5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */,
 				5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */,
-				5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */,
+				5F48584628C8EF6F00BD5BEE /* Mock */,
 			);
 			path = TetrisTests;
 			sourceTree = "<group>";
@@ -250,6 +252,15 @@
 				5F48582D28C733A600BD5BEE /* ServiceLocator.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		5F48584628C8EF6F00BD5BEE /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */,
+				5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +476,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */,
 				5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */,
 				5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */,
 				5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */,
@@ -656,7 +668,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -685,7 +697,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

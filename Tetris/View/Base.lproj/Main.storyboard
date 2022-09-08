@@ -22,22 +22,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-Ai-5Jy" userLabel="Main Stack">
                                 <rect key="frame" x="10" y="54" width="370" height="746"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ofR-2m-f4p" userLabel="Game Stack">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-J2-m3L" userLabel="Game View">
                                         <rect key="frame" x="0.0" y="0.0" width="370" height="636"/>
-                                        <subviews>
-                                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-J2-m3L" userLabel="Board View">
-                                                <rect key="frame" x="0.0" y="0.0" width="260" height="636"/>
-                                                <color key="backgroundColor" red="0.15686275059999999" green="0.1647058874" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="260" id="QMy-Cg-5Sq"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oO6-z8-Gbt" userLabel="Info View">
-                                                <rect key="frame" x="270" y="0.0" width="100" height="636"/>
-                                                <color key="backgroundColor" red="0.10408321096463162" green="0.19108338597304733" blue="0.26542358698247426" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                            </view>
-                                        </subviews>
-                                    </stackView>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tWd-6f-lb1" userLabel="Buttons Stack">
                                         <rect key="frame" x="0.0" y="646" width="370" height="100"/>
                                         <subviews>
@@ -138,7 +125,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boardView" destination="g6g-J2-m3L" id="SVL-ae-Mc0"/>
+                        <outlet property="gameView" destination="g6g-J2-m3L" id="WL7-iu-Opj"/>
                         <segue destination="xqv-aX-Gzl" kind="presentation" identifier="goToSettings" id="xcZ-sE-OCu"/>
                     </connections>
                 </viewController>

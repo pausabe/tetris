@@ -15,18 +15,16 @@ class MainViewController: UIViewController, GameServiceDelegate {
     
     var boardPositionAndSubviewRelation: [String: UIView] = [:]
     var lastTetrominoPosition: TetrominoSquares?
+    let rightSpaceForInformation: Float = 100.0
+    var squareSize: Float = 0
     var rowNumber: Int = 0
     var columnNumber: Int = 0
-    let squareSize: Float = 20
+    var boardView: UIView!
     
-    @IBOutlet weak var boardView: UIView!
+    @IBOutlet weak var gameView: UIView!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // TODO: subcribe to GameService events
-        
-        defineBoardSize()
+    override func viewDidAppear(_ animated: Bool) {
+        defineBoard()
         addServicesToLocator()
         loadDependencies()
     }
@@ -47,9 +45,22 @@ class MainViewController: UIViewController, GameServiceDelegate {
         self.gameService.delegate = self
     }
     
-    func defineBoardSize(){
-        rowNumber = Int(floor(Float(boardView.frame.size.height) / squareSize))
-        columnNumber = Int(floor(Float(boardView.frame.size.width) / squareSize))
+    func defineBoard(){
+        let startingSquareSize: Float = 20
+        
+        let gameHeight: Float = Float(gameView.frame.size.height)
+        let gameWidth: Float = Float(gameView.frame.size.width) - rightSpaceForInformation
+        
+        let maximumRows = Int(floor(gameHeight / startingSquareSize))
+        squareSize = Float(gameHeight) / Float(maximumRows)
+        rowNumber = Int(floor(gameHeight / squareSize))
+        columnNumber = Int(floor(gameWidth / squareSize))
+        
+        let viewRectFrame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(Float(columnNumber) * squareSize), height: CGFloat(Float(rowNumber) * squareSize))
+        boardView = UIView(frame: viewRectFrame)
+        boardView.backgroundColor = UIColor(#colorLiteral(red: 0.07213427871, green: 0.1938643456, blue: 0.2723750472, alpha: 0.8))
+        
+        gameView.addSubview(boardView)
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -22,7 +22,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     var tetrominoService: TetrominoServiceProtocol! = nil
     
     var delegate: GameServiceDelegate?
-    var timeTickIntervalSeconds: Double = 1.5
+    var timeTickIntervalSeconds: Double = 0.1 // 1.5
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
     enum movementDirections{

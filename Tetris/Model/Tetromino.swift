@@ -100,9 +100,9 @@ class SkewTetromino: Tetromino{
         squares.firstSquare.boardColumn = firstSquareColumn
         squares.secondSquare.boardRow = squares.firstSquare.boardRow + 1
         squares.secondSquare.boardColumn = squares.firstSquare.boardColumn
-        squares.thirdSquare.boardRow = squares.firstSquare.boardRow + 2
+        squares.thirdSquare.boardRow = squares.firstSquare.boardRow + 1
         squares.thirdSquare.boardColumn = squares.firstSquare.boardColumn + 1
-        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 3
+        squares.fourthSquare.boardRow = squares.firstSquare.boardRow + 2
         squares.fourthSquare.boardColumn = squares.firstSquare.boardColumn + 1
     }
 }

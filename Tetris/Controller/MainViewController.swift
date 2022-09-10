@@ -32,7 +32,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     func addServicesToLocator(){
         ServiceLocator.shared.addService(service: TimerService())
         ServiceLocator.shared.addService(service: BoardService(rows: rowNumber, columns: columnNumber))
-        ServiceLocator.shared.addService(service: TetrominoService())
+        ServiceLocator.shared.addService(service: TetrominoHelper())
         ServiceLocator.shared.addService(service: MediaPlayerService())
         ServiceLocator.shared.addService(service: GameService())
     }
@@ -58,6 +58,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         
         let viewRectFrame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(Float(columnNumber) * squareSize), height: CGFloat(Float(rowNumber) * squareSize))
         boardView = UIView(frame: viewRectFrame)
+        // TODO: move color somwhere else
         boardView.backgroundColor = UIColor(#colorLiteral(red: 0.07213427871, green: 0.1938643456, blue: 0.2723750472, alpha: 0.8))
         
         gameView.addSubview(boardView)
@@ -89,6 +90,14 @@ class MainViewController: UIViewController, GameServiceDelegate {
         self.performSegue(withIdentifier: "goToSettings", sender: self)
     }
     
+    @IBAction func downButtonPressed(_ sender: UIButton) {
+        gameService.moveDown()
+    }
+    
+    @IBAction func rotateButtonPressed(_ sender: UIButton) {
+        gameService.rotate()
+    }
+    
     func tetrominoHasMoved() {
         eraseCurrentTetrominoLastPosition()
         drawCurrentTetromino()
@@ -105,40 +114,50 @@ class MainViewController: UIViewController, GameServiceDelegate {
         print("game over")
     }
     
+    func fullRowCleared() {
+        // TODO:
+        print("full row. score: \(gameService.currentScore)")
+        drawEntireBoard()
+    }
+    
     // TODO: move all board view to another controller
     
     func eraseCurrentTetrominoLastPosition(){
         if lastTetrominoPosition != nil{
-            eraseSquare(square: lastTetrominoPosition!.firstSquare)
-            eraseSquare(square: lastTetrominoPosition!.secondSquare)
-            eraseSquare(square: lastTetrominoPosition!.thirdSquare)
-            eraseSquare(square: lastTetrominoPosition!.fourthSquare)
+            eraseSquare(lastTetrominoPosition!.firstSquare)
+            eraseSquare(lastTetrominoPosition!.secondSquare)
+            eraseSquare(lastTetrominoPosition!.thirdSquare)
+            eraseSquare(lastTetrominoPosition!.fourthSquare)
         }
     }
     
-    func eraseSquare(square: Square){
-        let squareView = boardPositionAndSubviewRelation[squareKey(square: square)]
+    func eraseSquare(_ square: Square){
+        let squareView = boardPositionAndSubviewRelation[squareKey(square)]
         squareView?.removeFromSuperview()
     }
     
     func drawCurrentTetromino(){
-        drawSquare(square: gameService.currentTetromino!.squares.firstSquare, color: gameService.currentTetromino!.color)
-        drawSquare(square: gameService.currentTetromino!.squares.secondSquare, color: gameService.currentTetromino!.color)
-        drawSquare(square: gameService.currentTetromino!.squares.thirdSquare, color: gameService.currentTetromino!.color)
-        drawSquare(square: gameService.currentTetromino!.squares.fourthSquare, color: gameService.currentTetromino!.color)
+        drawSquare(gameService.currentTetromino!.squares.firstSquare, gameService.currentTetromino!.color)
+        drawSquare(gameService.currentTetromino!.squares.secondSquare, gameService.currentTetromino!.color)
+        drawSquare(gameService.currentTetromino!.squares.thirdSquare, gameService.currentTetromino!.color)
+        drawSquare(gameService.currentTetromino!.squares.fourthSquare, gameService.currentTetromino!.color)
     }
     
-    func drawSquare(square: Square, color: UIColor){
+    func drawSquare(_ square: Square, _ color: UIColor){
         let squareView : UIView = createSquare(
-            x: Float(square.boardColumn) * squareSize,
-            y: Float(square.boardRow) * squareSize,
+            x: Float(square.column) * squareSize,
+            y: Float(square.row) * squareSize,
             color: color)
+        
+        /*let squareView : UIView = UIImageView(image: UIImage(named: "launch_icon"))
+        squareView.frame = CGRect(x: CGFloat(Float(square.boardColumn) * squareSize), y: CGFloat(Float(square.boardRow) * squareSize), width: CGFloat(squareSize), height: CGFloat(squareSize))*/
+        
         boardView.addSubview(squareView)
-        boardPositionAndSubviewRelation[squareKey(square: square)] = squareView
+        boardPositionAndSubviewRelation[squareKey(square)] = squareView
     }
     
-    func squareKey(square: Square) -> String{
-        return "\(square.boardRow)_\(square.boardColumn)"
+    func squareKey(_ square: Square) -> String{
+        return "\(square.row)_\(square.column)"
     }
     
     func createSquare(x: Float, y: Float, color: UIColor) -> UIView{
@@ -150,7 +169,18 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     func drawEntireBoard(){
-        // TODO:
+        for rowIndex in 0...(rowNumber - 1){
+            for columnIndex in (0...columnNumber - 1){
+                var square = Square()
+                square.row = rowIndex
+                square.column = columnIndex
+                eraseSquare(square)
+                let color: UIColor? = gameService.getColorOfSquare(square)
+                if color != nil{
+                    drawSquare(square, color!)
+                }
+            }
+        }
     }
     
 }

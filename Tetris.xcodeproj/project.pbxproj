@@ -33,10 +33,11 @@
 		5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */; };
 		5F48583928C7723800BD5BEE /* BoardService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583828C7723800BD5BEE /* BoardService.swift */; };
 		5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */; };
-		5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */; };
-		5F48583F28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */; };
-		5F48584328C89B9E00BD5BEE /* TetrominoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584228C89B9E00BD5BEE /* TetrominoService.swift */; };
+		5F48583D28C89B2100BD5BEE /* TetrominoHelperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583C28C89B2100BD5BEE /* TetrominoHelperMock.swift */; };
+		5F48583F28C89B2E00BD5BEE /* TetrominoHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583E28C89B2E00BD5BEE /* TetrominoHelperProtocol.swift */; };
+		5F48584328C89B9E00BD5BEE /* TetrominoHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584228C89B9E00BD5BEE /* TetrominoHelper.swift */; };
 		5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */; };
+		5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,10 +114,11 @@
 		5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceProtocol.swift; sourceTree = "<group>"; };
 		5F48583828C7723800BD5BEE /* BoardService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardService.swift; sourceTree = "<group>"; };
 		5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceTests.swift; sourceTree = "<group>"; };
-		5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceMock.swift; sourceTree = "<group>"; };
-		5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoServiceProtocol.swift; sourceTree = "<group>"; };
-		5F48584228C89B9E00BD5BEE /* TetrominoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoService.swift; sourceTree = "<group>"; };
+		5F48583C28C89B2100BD5BEE /* TetrominoHelperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoHelperMock.swift; sourceTree = "<group>"; };
+		5F48583E28C89B2E00BD5BEE /* TetrominoHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoHelperProtocol.swift; sourceTree = "<group>"; };
+		5F48584228C89B9E00BD5BEE /* TetrominoHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoHelper.swift; sourceTree = "<group>"; };
 		5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceMock.swift; sourceTree = "<group>"; };
+		5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDirectionEnum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,8 +222,8 @@
 				5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */,
 				5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */,
 				5F48583828C7723800BD5BEE /* BoardService.swift */,
-				5F48583E28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift */,
-				5F48584228C89B9E00BD5BEE /* TetrominoService.swift */,
+				5F48583E28C89B2E00BD5BEE /* TetrominoHelperProtocol.swift */,
+				5F48584228C89B9E00BD5BEE /* TetrominoHelper.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -249,6 +251,7 @@
 		5F48582F28C733B300BD5BEE /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */,
 				5F48582D28C733A600BD5BEE /* ServiceLocator.swift */,
 			);
 			path = Utils;
@@ -257,7 +260,7 @@
 		5F48584628C8EF6F00BD5BEE /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				5F48583C28C89B2100BD5BEE /* TetrominoServiceMock.swift */,
+				5F48583C28C89B2100BD5BEE /* TetrominoHelperMock.swift */,
 				5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */,
 			);
 			path = Mock;
@@ -440,6 +443,7 @@
 			files = (
 				5F4857CF28BFAACF00BD5BEE /* MainViewController.swift in Sources */,
 				5F4857E828C3A33F00BD5BEE /* MediaPlayerService.swift in Sources */,
+				5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */,
 				5F48581F28C64DA400BD5BEE /* Board.swift in Sources */,
 				5F48583328C7466200BD5BEE /* TimerService.swift in Sources */,
 				5F48582E28C733A600BD5BEE /* ServiceLocator.swift in Sources */,
@@ -449,10 +453,10 @@
 				5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */,
 				5F48581328C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift in Sources */,
 				5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */,
-				5F48584328C89B9E00BD5BEE /* TetrominoService.swift in Sources */,
+				5F48584328C89B9E00BD5BEE /* TetrominoHelper.swift in Sources */,
 				5F48581928C5E6D700BD5BEE /* GameService.swift in Sources */,
 				5F4857CD28BFAACF00BD5BEE /* SceneDelegate.swift in Sources */,
-				5F48583F28C89B2E00BD5BEE /* TetrominoServiceProtocol.swift in Sources */,
+				5F48583F28C89B2E00BD5BEE /* TetrominoHelperProtocol.swift in Sources */,
 				5F48581528C5E62800BD5BEE /* Tetromino.swift in Sources */,
 				5F48583928C7723800BD5BEE /* BoardService.swift in Sources */,
 			);
@@ -478,7 +482,7 @@
 			files = (
 				5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */,
 				5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */,
-				5F48583D28C89B2100BD5BEE /* TetrominoServiceMock.swift in Sources */,
+				5F48583D28C89B2100BD5BEE /* TetrominoHelperMock.swift in Sources */,
 				5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */,
 				5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */,
 			);

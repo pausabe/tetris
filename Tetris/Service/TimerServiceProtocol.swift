@@ -13,4 +13,5 @@ protocol TimerServiceProtocol{
     
     func start(intervalSeconds: Double)
     func stop()
+    func incrementSpeed(_ incrementSeconds: Double)
 }

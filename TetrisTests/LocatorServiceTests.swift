@@ -22,7 +22,6 @@ class LocatorServiceTests: XCTestCase {
         let gameService = GameService()
         ServiceLocator.shared.addService(service: gameService)
         XCTAssertEqual(mediaPlayerService.test, "default")
-        //XCTAssertEqual(gameService.horizontalStep, 30)
     }
     
     func testAlwaysSameInstance(){

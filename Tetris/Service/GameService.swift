@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum GameState {
     case stopped, running, paused
@@ -14,6 +15,7 @@ enum GameState {
 protocol GameServiceDelegate{
     func tetrominoHasMoved()
     func newTetrominoAdded()
+    func fullRowCleared()
     func gameOver()
 }
 
@@ -21,48 +23,45 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     
     var timerService: TimerServiceProtocol! = nil
     var boardService: BoardServiceProtocol! = nil
-    var tetrominoService: TetrominoServiceProtocol! = nil
+    var tetrominoHelper: TetrominoHelperProtocol! = nil
     
     var delegate: GameServiceDelegate?
-    var timeTickIntervalSeconds: Double = 0.1 // TODO: increase over time 1.5
+    var startingTimerIntervalSeconds: Double = 1.0
+    var incrementTimerSeconds: Double = 0.05 // TODO: This should increment logaritmically
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
-    enum movementDirections{
-        case left, right, down
-    }
+    var currentScore: Int = 0
     
     init(timerService: TimerServiceProtocol? = nil,
          boardService: BoardServiceProtocol? = nil,
-         tetrominoService: TetrominoServiceProtocol? = nil){
+         tetrominoService: TetrominoHelperProtocol? = nil){
         self.timerService = timerService ?? ServiceLocator.shared.getService()! as TimerServiceProtocol
         self.boardService = boardService ?? ServiceLocator.shared.getService()! as BoardServiceProtocol
-        self.tetrominoService = tetrominoService ?? ServiceLocator.shared.getService()! as TetrominoServiceProtocol
+        self.tetrominoHelper = tetrominoService ?? ServiceLocator.shared.getService()! as TetrominoHelperProtocol
         
         self.timerService?.delegate = self
     }
 
     func play() {
         if currentState == GameState.stopped{
-            currentTetromino = tetrominoService.newRandomTetromino()
-            moveCurrentTetrominoToStartPosition()
+            startNewTetromino()
         }
         
         currentState = GameState.running
-        timerService.start(intervalSeconds: timeTickIntervalSeconds)
+        timerService.start(intervalSeconds: startingTimerIntervalSeconds)
     }
     
-    @discardableResult func moveCurrentTetrominoToStartPosition() -> Bool {
-        return boardService.setTetrominoInStartingPlace(currentTetromino!)
+    @discardableResult func startNewTetromino() -> Bool{
+        currentTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
+        return boardService.setNewTetrominoInBoard(squares: currentTetromino!.squares, color: currentTetromino?.color)
     }
-    
+
     func pause(){
-        // TODO:
         currentState = GameState.paused
         timerService.stop()
     }
     
     func stop(){
-        // TODO:
         currentState = GameState.stopped
         timerService.stop()
     }
@@ -75,17 +74,24 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         boardService.board!.columnNumber
     }
     
+    func getColorOfSquare(_ square: Square) -> UIColor? {
+        return boardService.board!.map[square.row][square.column]
+    }
+    
     func timerTick() {
-        if !move(direction: .down){
-            /*
-             TODO:
-             - Check if there is a row that can be deleted (checking at GameService.RowCompleted). And in case of a row deltion:
-                - Remove row from the GameService.BoardMap moving all the Tetronimos avobe the row
-             */
-
-            currentTetromino = tetrominoService.newRandomTetromino()
-            moveCurrentTetrominoToStartPosition() ? delegate?.newTetrominoAdded() : setGameOver()
+        if !move(.down){
+            let rowsCleared = boardService.clearFullRows(currentTetromino!.squares)
+            if rowsCleared > 0 {
+                currentScore += (rowsCleared * boardService.board!.columnNumber)
+                delegate?.fullRowCleared()
+            }
+            startNewTetromino() ? setNewTetromino() : setGameOver()
         }
+    }
+    
+    func setNewTetromino(){
+        timerService.incrementSpeed(incrementTimerSeconds)
+        delegate?.newTetrominoAdded()
     }
     
     func setGameOver(){
@@ -95,37 +101,32 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     }
     
     func moveLeft() -> Bool {
-        return move(direction: .left)
+        return move(.left)
     }
     
     func moveRight() -> Bool{
-        return move(direction: .right)
+        return move(.right)
     }
     
     func moveDown() -> Bool{
-        return move(direction: .down)
+        return move(.down)
     }
     
-    @discardableResult func move(direction: movementDirections) -> Bool{
-        if currentTetromino != nil{
-            let newRow = currentTetromino!.squares.firstSquare.boardRow + (direction == .down ? 1 : 0)
-            var newColumn = currentTetromino!.squares.firstSquare.boardColumn
-            if direction == .left{
-                newColumn -= 1
-            }
-            else if direction == .right{
-                newColumn += 1
-            }
-            if boardService.moveTetromino(
-                tetromino: currentTetromino!,
-                newStartingTetrominoRow: newRow,
-                newStartingTetrominoColumn: newColumn){
-                
-                currentTetromino?.setSquaresByFirstSquare(firstSquareRow: newRow, firstSquareColumn: newColumn)
-                delegate?.tetrominoHasMoved()
-                return true
-            }
+    func rotate() -> Bool {
+        return move(.rotation)
+    }
+    
+    @discardableResult func move(_ direction: MovementDirectionEnum) -> Bool{
+        if boardService.moveTetromino(
+            original: currentTetromino!.squares,
+            desired: currentTetromino!.getDesiredSquares(direction),
+            color: currentTetromino?.color){
+            
+            currentTetromino!.move(direction)
+            delegate?.tetrominoHasMoved()
+            return true
         }
         return false
     }
+    
 }

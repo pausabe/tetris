@@ -87,6 +87,9 @@
                                                             <color key="baseForegroundColor" red="1" green="0.92747622760000004" blue="0.70990491030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <color key="baseBackgroundColor" red="0.078431375319999996" green="0.14509806040000001" blue="0.20000001789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="downButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvz-XL-yQg"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sm-Yl-Bq3">
                                                         <rect key="frame" x="284.33333333333331" y="0.0" width="85.666666666666686" height="45"/>
@@ -95,6 +98,9 @@
                                                             <color key="baseForegroundColor" red="1" green="0.92747622760000004" blue="0.70990491030000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <color key="baseBackgroundColor" red="0.078431375319999996" green="0.14509806040000001" blue="0.20000001789999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         </buttonConfiguration>
+                                                        <connections>
+                                                            <action selector="rotateButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qZY-Fa-j26"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>

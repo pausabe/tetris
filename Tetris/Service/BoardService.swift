@@ -16,7 +16,7 @@ class BoardService : BoardServiceProtocol{
     init(rows: Int,
          columns: Int){
         initBoardMap(rows: rows, columns: columns)
-        setTetrominoStartPosition()
+        declareTetrominoStartPosition()
     }
     
     func initBoardMap(rows: Int,
@@ -25,84 +25,128 @@ class BoardService : BoardServiceProtocol{
                       columns: columns)
     }
     
-    func setTetrominoStartPosition(){
+    func declareTetrominoStartPosition(){
         tetrominoStartingRow = 0
         tetrominoStartingColumn = Int(floor(Double(board!.columnNumber / 2)))
     }
     
-    func clearTetrominoInBoard(tetromino: Tetromino){
-        updateTetrominoSquares(tetromino: tetromino, boardPositionFill: nil)
+    func clearTetrominoInBoard(_ squares: TetrominoSquares){
+        updateTetrominoSquares(squares, boardPositionFill: nil)
     }
     
-    func setTetrominoInStartingPlace(_ tetromino: Tetromino) -> Bool {
-        moveTetromino(tetromino: tetromino, newStartingTetrominoRow: tetrominoStartingRow, newStartingTetrominoColumn: tetrominoStartingColumn)
+    func setNewTetrominoInBoard(squares: TetrominoSquares, color: UIColor?) -> Bool {
+        return moveTetromino(original: nil, desired: squares, color: color)
     }
     
-    func setTetrominoInBoard(tetromino: Tetromino) {
-        updateTetrominoSquares(tetromino: tetromino, boardPositionFill: tetromino.color)
+    func updateTetrominoSquares(_ squares: TetrominoSquares, boardPositionFill: UIColor?){
+        board!.map[squares.firstSquare.row][squares.firstSquare.column] = boardPositionFill
+        board!.map[squares.secondSquare.row][squares.secondSquare.column] = boardPositionFill
+        board!.map[squares.thirdSquare.row][squares.thirdSquare.column] = boardPositionFill
+        board!.map[squares.fourthSquare.row][squares.fourthSquare.column] = boardPositionFill
     }
     
-    func updateTetrominoSquares(tetromino: Tetromino, boardPositionFill: UIColor?){
-        board!.map[tetromino.squares.firstSquare.boardRow][tetromino.squares.firstSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.squares.secondSquare.boardRow][tetromino.squares.secondSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.squares.thirdSquare.boardRow][tetromino.squares.thirdSquare.boardColumn] = boardPositionFill
-        board!.map[tetromino.squares.fourthSquare.boardRow][tetromino.squares.fourthSquare.boardColumn] = boardPositionFill
-    }
-    
-    func moveTetromino(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool{
-        if checkMovementPossibility(tetromino: tetromino, newStartingTetrominoRow: newStartingTetrominoRow, newStartingTetrominoColumn: newStartingTetrominoColumn){
-            
-            clearTetrominoInBoard(tetromino: tetromino)
-            tetromino.setSquaresByFirstSquare(
-                firstSquareRow: newStartingTetrominoRow,
-                firstSquareColumn: newStartingTetrominoColumn)
-            setTetrominoInBoard(tetromino: tetromino)
-            // TODO: Check if with this movement there is some Row completed and it saves it into GameService.RowCompleted array
+    @discardableResult func moveTetromino(original: TetrominoSquares?, desired: TetrominoSquares, color: UIColor?) -> Bool{
+        if tetrominoIsInCorrectPlace(original: original, desired: desired){
+            if original != nil{
+                clearTetrominoInBoard(original!)
+            }
+            updateTetrominoSquares(desired, boardPositionFill: color)
             return true
         }
         return false
     }
     
-    func checkMovementPossibility(tetromino: Tetromino, newStartingTetrominoRow: Int, newStartingTetrominoColumn: Int) -> Bool{
-        let oldFirstSquare = tetromino.squares.firstSquare
-        clearTetrominoInBoard(tetromino: tetromino)
-        tetromino.setSquaresByFirstSquare(firstSquareRow: newStartingTetrominoRow, firstSquareColumn: newStartingTetrominoColumn)
-        
-        let movementIsPossible = tetrominoIsInCorrectPlace(tetromino: tetromino)
-        
-        tetromino.setSquaresByFirstSquare(firstSquareRow: oldFirstSquare.boardRow, firstSquareColumn: oldFirstSquare.boardColumn)
-        setTetrominoInBoard(tetromino: tetromino)
-        
-        return movementIsPossible
-    }
-    
-    func tetrominoIsInCorrectPlace(tetromino: Tetromino) -> Bool {
-        if !tetrominoSquareIsAvailable(square: tetromino.squares.firstSquare){
+    func tetrominoIsInCorrectPlace(original: TetrominoSquares?, desired: TetrominoSquares) -> Bool {
+        if !tetrominoSquareIsAvailable(original, desired.firstSquare){
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.squares.secondSquare) {
+        if !tetrominoSquareIsAvailable(original, desired.secondSquare) {
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.squares.thirdSquare){
+        if !tetrominoSquareIsAvailable(original, desired.thirdSquare){
             return false
         }
-        if !tetrominoSquareIsAvailable(square: tetromino.squares.fourthSquare){
+        if !tetrominoSquareIsAvailable(original, desired.fourthSquare){
             return false
         }
         return true
     }
     
-    func tetrominoSquareIsAvailable(square: Square) -> Bool {
-         if square.boardRow < 0 || square.boardColumn < 0 {
+    func tetrominoSquareIsAvailable(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool {
+         if desiredSquare.row < 0 || desiredSquare.column < 0 {
             return false
         }
-        if square.boardRow > (board!.rowNumber - 1) || square.boardColumn > (board!.columnNumber - 1){
+        if desiredSquare.row > (board!.rowNumber - 1) || desiredSquare.column > (board!.columnNumber - 1){
             return false
         }
-        if board!.map[square.boardRow][square.boardColumn] != nil {
+        if !desiredSquareIsFromOriginalTetromino(originalSquares, desiredSquare) && board!.map[desiredSquare.row][desiredSquare.column] != nil {
             return false
         }
         return true
     }
     
+    func desiredSquareIsFromOriginalTetromino(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool{
+        if originalSquares == nil{
+            return false
+        }
+        
+        let originalSquaresArray = [originalSquares!.firstSquare, originalSquares!.secondSquare, originalSquares!.thirdSquare, originalSquares!.fourthSquare]
+        for originalSquare in originalSquaresArray{
+            if originalSquare.row == desiredSquare.row && originalSquare.column == desiredSquare.column {
+                return true
+            }
+        }
+        return false
+    }
+    
+    func clearFullRows(_ squares: TetrominoSquares) -> Int {
+        var rowsCleared = 0
+        for row in tetrominoRowsFromUpToDown(squares) {
+            if rowIsFull(row) {
+                clearRowAndDescendAboveSquares(row)
+                rowsCleared += 1
+            }
+        }
+        return rowsCleared
+    }
+    
+    func tetrominoRowsFromUpToDown(_ squares: TetrominoSquares) -> Array<Int>{
+        var rows: Array<Int> = []
+        rows.append(squares.firstSquare.row)
+        if !rows.contains(squares.secondSquare.row){
+            rows.append(squares.secondSquare.row)
+        }
+        if !rows.contains(squares.thirdSquare.row){
+            rows.append(squares.thirdSquare.row)
+        }
+        if !rows.contains(squares.fourthSquare.row){
+            rows.append(squares.fourthSquare.row)
+        }
+        rows.sort()
+        return rows
+    }
+    
+    func rowIsFull(_ row: Int) -> Bool {
+        for i in 0...(board!.columnNumber - 1){
+            if board!.map[row][i] == nil {
+                return false
+            }
+        }
+        return true
+    }
+    
+    func clearRowAndDescendAboveSquares(_ row: Int){
+        for i in 0...(board!.columnNumber - 1){
+            board!.map[row][i] = nil
+        }
+        let firstRowToDescend = row - 1
+        for rowIndex in (0...firstRowToDescend).reversed(){
+            for columnIndex in 0...(board!.columnNumber - 1){
+                if board!.map[rowIndex][columnIndex] != nil{
+                    board!.map[rowIndex + 1][columnIndex] = board!.map[rowIndex][columnIndex]
+                    board!.map[rowIndex][columnIndex] = nil
+                }
+            }
+        }
+    }
 }

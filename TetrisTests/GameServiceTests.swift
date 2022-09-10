@@ -11,18 +11,18 @@ import XCTest
 class GameServiceTests: XCTestCase {
     
     var gameService: GameServiceProtocol! = nil
-    var tetrominoServiceMock: TetrominoServiceMock! = nil
+    var tetrominoHelperMock: TetrominoHelperMock! = nil
     var timerService: TimerServiceMock! = nil
     let rows = 20
     let columns = 10
     
     override func setUp() {
-        tetrominoServiceMock = TetrominoServiceMock()
+        tetrominoHelperMock = TetrominoHelperMock()
         timerService = TimerServiceMock()
         gameService = GameService(
             timerService: timerService,
             boardService: BoardService(rows: rows, columns: columns),
-            tetrominoService: tetrominoServiceMock)
+            tetrominoService: tetrominoHelperMock)
     }
     
     func testStartGame() throws {
@@ -33,7 +33,7 @@ class GameServiceTests: XCTestCase {
         XCTAssertEqual(gameService.currentState, GameState.stopped)
         XCTAssertNil(gameService.currentTetromino)
         
-        tetrominoServiceMock.randomTetromino = randomTetromino
+        tetrominoHelperMock.randomTetromino = randomTetromino
         gameService!.play()
         
         XCTAssertNotNil(gameService.currentTetromino)
@@ -45,47 +45,27 @@ class GameServiceTests: XCTestCase {
         checkMovement()
     }
     
-    func testOneHorizontalMovementSquare() throws {
-        startGame(randomTetromino: 2)
-        checkMovement()
-    }
-    
-    func testOneHorizontalMovementT() throws {
-        startGame(randomTetromino: 3)
-        checkMovement()
-    }
-    
-    func testOneHorizontalMovementL() throws {
-        startGame(randomTetromino: 4)
-        checkMovement()
-    }
-    
-    func testOneHorizontalMovementSkew() throws {
-        startGame(randomTetromino: 5)
-        checkMovement()
-    }
-    
     func checkMovement(){
-        let startingTetrominoColumn = gameService.currentTetromino!.squares.firstSquare.boardColumn
+        let startingTetrominoColumn = gameService.currentTetromino!.squares.firstSquare.column
         XCTAssertTrue(gameService!.moveLeft())
-        let movedTetrominoColumn = gameService.currentTetromino!.squares.firstSquare.boardColumn
+        let movedTetrominoColumn = gameService.currentTetromino!.squares.firstSquare.column
         XCTAssertEqual(startingTetrominoColumn, movedTetrominoColumn + 1)
     }
     
     func testTimerTickMakesTetrominoGoDown() throws{
         startGame()
-        let startingTetrominoRow = gameService.currentTetromino!.squares.firstSquare.boardRow
+        let startingTetrominoRow = gameService.currentTetromino!.squares.firstSquare.row
         timerService.forceTimerTick()
-        let movedTetrominoRow = gameService.currentTetromino!.squares.firstSquare.boardRow
+        let movedTetrominoRow = gameService.currentTetromino!.squares.firstSquare.row
         XCTAssertEqual(startingTetrominoRow + 1, movedTetrominoRow)
     }
     
     func testNewTetrominoInBoard() throws {
-        startGame()
+        startGame(randomTetromino: 1)
         moveAllWayDown()
-        XCTAssertFalse(gameService!.currentTetromino?.squares.firstSquare.boardRow == 0)
+        XCTAssertFalse(gameService!.currentTetromino?.squares.firstSquare.row == 0)
         timerService.forceTimerTick()
-        XCTAssertTrue(gameService!.currentTetromino?.squares.firstSquare.boardRow == 0)
+        XCTAssertTrue(gameService!.currentTetromino?.squares.firstSquare.row == 0)
     }
     
     func moveAllWayDown(){
@@ -93,12 +73,31 @@ class GameServiceTests: XCTestCase {
     }
     
     func testGameOver() throws {
-        startGame()
+        startGame(randomTetromino: 6)
         while gameService.currentState != .stopped{
             moveAllWayDown()
             timerService.forceTimerTick()
         }
         XCTAssertEqual(gameService.currentState, .stopped)
     }
-
+    
+    func testFullRow() throws{
+        startGame(randomTetromino: 7)
+        XCTAssertEqual(gameService.currentScore, 0)
+        let maximumTetrominoSquare = columns / 2
+        for i in 1...maximumTetrominoSquare {
+            moveTetrominoToMaximumBottomLeft()
+            if i == maximumTetrominoSquare{
+            }
+            timerService.forceTimerTick()
+        }
+        XCTAssertEqual(gameService.currentScore, maximumTetrominoSquare * 4)
+    }
+    
+    func moveTetrominoToMaximumBottomLeft(){
+        while gameService!.moveRight() {}
+        while gameService!.moveDown() {}
+        while gameService!.moveLeft() {}
+    }
+    
 }

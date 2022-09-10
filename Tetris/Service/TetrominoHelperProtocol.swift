@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol TetrominoServiceProtocol{
-    func newRandomTetromino() -> Tetromino
+protocol TetrominoHelperProtocol{
+    func newRandomTetromino(_ startingRow: Int, _ startingColumn: Int) -> Tetromino
 }

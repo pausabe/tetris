@@ -8,6 +8,10 @@
 import UIKit
 import SwiftUI
 
+// set score on view
+// long press movement buttons
+// visual grid
+
 class MainViewController: UIViewController, GameServiceDelegate {
 
     var mediaPlayerService : MediaPlayerServiceProtocol! = nil
@@ -15,13 +19,18 @@ class MainViewController: UIViewController, GameServiceDelegate {
     
     var boardPositionAndSubviewRelation: [String: UIView] = [:]
     var lastTetrominoPosition: TetrominoSquares?
-    let rightSpaceForInformation: Float = 100.0
     var squareSize: Float = 0
     var rowNumber: Int = 0
     var columnNumber: Int = 0
     var boardView: UIView!
     
+    @IBOutlet var mainView: UIView!
     @IBOutlet weak var gameView: UIView!
+    
+    override func viewDidLoad() {
+        // TODO: move hex color to Keys file
+        mainView.applyGradient(colours: [ViewHelper.getColorByHex(rgbHexValue: 0x033650), .black])
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         defineBoard()
@@ -49,14 +58,17 @@ class MainViewController: UIViewController, GameServiceDelegate {
         let startingSquareSize: Float = 20
         
         let gameHeight: Float = Float(gameView.frame.size.height)
-        let gameWidth: Float = Float(gameView.frame.size.width) - rightSpaceForInformation
+        let gameWidth: Float = Float(gameView.frame.size.width)
         
         let maximumRows = Int(floor(gameHeight / startingSquareSize))
         squareSize = Float(gameHeight) / Float(maximumRows)
         rowNumber = Int(floor(gameHeight / squareSize))
         columnNumber = Int(floor(gameWidth / squareSize))
         
-        let viewRectFrame = CGRect(x: CGFloat(0), y: CGFloat(0), width: CGFloat(Float(columnNumber) * squareSize), height: CGFloat(Float(rowNumber) * squareSize))
+        let boardWidth = Float(columnNumber) * squareSize
+        let xOffsetToCenterBoard: Float = (gameWidth - boardWidth) / 2
+        
+        let viewRectFrame = CGRect(x: CGFloat(xOffsetToCenterBoard), y: CGFloat(0), width: CGFloat(boardWidth), height: CGFloat(Float(rowNumber) * squareSize))
         boardView = UIView(frame: viewRectFrame)
         // TODO: move color somwhere else
         boardView.backgroundColor = UIColor(#colorLiteral(red: 0.07213427871, green: 0.1938643456, blue: 0.2723750472, alpha: 0.8))

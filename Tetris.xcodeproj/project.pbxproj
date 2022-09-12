@@ -39,6 +39,7 @@
 		5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */; };
 		5F5332D528CF232F00293DDA /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5332D428CF232F00293DDA /* ViewControllerExtensions.swift */; };
 		5F5332D728CF23DC00293DDA /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5332D628CF23DC00293DDA /* BoardViewController.swift */; };
+		5F5332D828CF604200293DDA /* Abang.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A183928CDCF4D005B7730 /* Abang.otf */; };
 		5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */; };
 		5FA2A6CC28CDBE2500BFCBC2 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */; };
 /* End PBXBuildFile section */
@@ -427,6 +428,7 @@
 				5F4857D728BFAAD000BD5BEE /* LaunchScreen.storyboard in Resources */,
 				5F4857E328C3518800BD5BEE /* tetris_soundtrack.mp3 in Resources */,
 				5F4857D428BFAAD000BD5BEE /* Assets.xcassets in Resources */,
+				5F5332D828CF604200293DDA /* Abang.otf in Resources */,
 				5F4857DF28C24C4700BD5BEE /* readme.md in Resources */,
 				5F4857D228BFAACF00BD5BEE /* Main.storyboard in Resources */,
 			);

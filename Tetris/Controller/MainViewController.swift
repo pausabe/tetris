@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 
-// set score on view
-// visual grid
 // key-value files
 // play pause
 // music loop
+// all store things
+// make some things private
 
 class MainViewController: UIViewController, GameServiceDelegate {
 
@@ -20,6 +20,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     var mediaPlayerService : MediaPlayerServiceProtocol! = nil
     var gameService : GameServiceProtocol! = nil
     var buttonFireModeTimer: Timer?
+    var fireTimerInterval: Float = 0.1
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var gameView: UIView!
@@ -35,7 +36,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         self.add(boardViewController, view: gameView)
         
         // TODO: move hex color to Keys file
-        mainView.applyGradient(colours: [ViewHelper.getColorByHex(rgbHexValue: 0x033650), .black])
+        mainView.applyGradient(colours: [ViewHelper.getColorByHex(rgbHexValue: 0x0c5a82), .black])
         
         leftButton.addTarget(self, action: #selector(leftButtonPressed), for: .touchDown)
         leftButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
@@ -80,18 +81,18 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     @objc func leftButtonPressed(_ sender: UIButton) {
-        askMovement(.left, fireModeEnabled: true)
+        askMovement(.left)
     }
     
     @objc func rightButtonPressed(_ sender: UIButton) {
-        askMovement(.right, fireModeEnabled: true)
+        askMovement(.right)
     }
     
     @objc func downButtonPressed(_ sender: UIButton) {
-        askMovement(.down, fireModeEnabled: true)
+        askMovement(.down)
     }
     
-    func askMovement(_ direction: MovementDirectionEnum, fireModeEnabled: Bool = false){
+    func askMovement(_ direction: MovementDirectionEnum){
         var selector: Selector?
         switch direction {
         case .left:
@@ -107,9 +108,8 @@ class MainViewController: UIViewController, GameServiceDelegate {
             askRotation()
         }
         
-        if fireModeEnabled && selector != nil {
-            // TODO: add timeInterval to a Keys file
-            buttonFireModeTimer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: selector!, userInfo: nil, repeats: true)
+        if selector != nil {
+            buttonFireModeTimer = Timer.scheduledTimer(timeInterval: TimeInterval(fireTimerInterval), target: self, selector: selector!, userInfo: nil, repeats: true)
         }
     }
     
@@ -145,7 +145,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     @IBAction func rotateButtonPressed(_ sender: UIButton) {
-        askMovement(.rotation, fireModeEnabled: true)
+        askMovement(.rotation)
     }
     
     func tetrominoHasMoved() {

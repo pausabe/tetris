@@ -117,7 +117,7 @@ struct Rotation{
 
 class LTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.orange
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xa480cf)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -142,7 +142,7 @@ class LTetromino: Tetromino{
 
 class LTetrominoInverted: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.orange
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xc5f6fb)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -167,7 +167,7 @@ class LTetrominoInverted: Tetromino{
 
 class SkewTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.green
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xff8877)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -190,7 +190,7 @@ class SkewTetromino: Tetromino{
 
 class SkewTetrominoInverted: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.green
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xffff82)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -213,7 +213,7 @@ class SkewTetrominoInverted: Tetromino{
 
 class TTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.purple
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0x6cccda)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -238,7 +238,7 @@ class TTetromino: Tetromino{
 
 class StraightTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.blue
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xb3e2a6)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -261,7 +261,7 @@ class StraightTetromino: Tetromino{
 
 class SquareTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = UIColor.yellow
+    let color = ViewHelper.getColorByHex(rgbHexValue: 0xffd670)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     

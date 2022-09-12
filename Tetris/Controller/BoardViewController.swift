@@ -17,10 +17,12 @@ class BoardViewController: UIViewController{
     var rowNumber: Int = 0
     var columnNumber: Int = 0
     var playableBoardView: UIView!
+    let squarePadding: Float = 0.4
     
     override func viewDidAppear(_ animated: Bool) {
         loadDependencies()
         defineBoard()
+        drawBoardGrid()
     }
     
     // ViewControllers does not have init() constructor. We let accessible this method to load the dependencies as desired
@@ -30,7 +32,7 @@ class BoardViewController: UIViewController{
     }
     
     func defineBoard(){
-        let startingSquareSize: Float = 20
+        let startingSquareSize: Float = 28
         
         let gameHeight: Float = Float(self.view.frame.size.height)
         let gameWidth: Float = Float(self.view.frame.size.width)
@@ -46,10 +48,17 @@ class BoardViewController: UIViewController{
         let viewRectFrame = CGRect(x: CGFloat(xOffsetToCenterBoard), y: CGFloat(0), width: CGFloat(boardWidth), height: CGFloat(Float(rowNumber) * squareSize))
         playableBoardView = UIView(frame: viewRectFrame)
         // TODO: move color somwhere else
-        playableBoardView.backgroundColor = UIColor(#colorLiteral(red: 0.07213427871, green: 0.1938643456, blue: 0.2723750472, alpha: 0.8))
+        playableBoardView.backgroundColor = UIColor(Color.white.opacity(0.25))
         
         self.view.addSubview(playableBoardView)
         gameService.initGame(rows: rowNumber, columns: columnNumber)
+    }
+    
+    func drawBoardGrid(){
+        let gridView: GridView = GridView()
+        gridView.frame = playableBoardView.bounds
+        playableBoardView.addSubview(gridView)
+        gridView.drawGrid(gridWidth: CGFloat(squareSize), color: .white, lineWidth: CGFloat(squarePadding))
     }
     
     func startGame(){
@@ -80,12 +89,10 @@ class BoardViewController: UIViewController{
     
     func drawSquare(_ square: Square, _ color: UIColor){
         let squareView : UIView = createSquare(
-            x: Float(square.column) * squareSize,
-            y: Float(square.row) * squareSize,
+            x: (Float(square.column) * squareSize) + squarePadding,
+            y: (Float(square.row) * squareSize) + squarePadding,
+            size: squareSize - (squarePadding * 2),
             color: color)
-        
-        /*let squareView : UIView = UIImageView(image: UIImage(named: "launch_icon"))
-        squareView.frame = CGRect(x: CGFloat(Float(square.boardColumn) * squareSize), y: CGFloat(Float(square.boardRow) * squareSize), width: CGFloat(squareSize), height: CGFloat(squareSize))*/
         
         playableBoardView.addSubview(squareView)
         boardPositionAndSubviewRelation[squareKey(square)] = squareView
@@ -95,8 +102,8 @@ class BoardViewController: UIViewController{
         return "\(square.row)_\(square.column)"
     }
     
-    func createSquare(x: Float, y: Float, color: UIColor) -> UIView{
-        let viewRectFrame = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(squareSize), height: CGFloat(squareSize))
+    func createSquare(x: Float, y: Float, size: Float, color: UIColor) -> UIView{
+        let viewRectFrame = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(size), height: CGFloat(size))
         let retView = UIView(frame: viewRectFrame)
         retView.backgroundColor = color
         retView.alpha = CGFloat(1.0)

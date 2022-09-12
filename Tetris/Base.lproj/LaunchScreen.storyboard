@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_background" translatesAutoresizingMaskIntoConstraints="NO" id="gAC-sa-B4R">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_icon" translatesAutoresizingMaskIntoConstraints="NO" id="54h-xi-Gwk">
                                 <rect key="frame" x="79" y="320" width="256" height="256"/>
                             </imageView>
@@ -28,10 +25,6 @@
                         <constraints>
                             <constraint firstItem="54h-xi-Gwk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GIL-lb-ASb"/>
                             <constraint firstItem="54h-xi-Gwk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Sht-go-QKu"/>
-                            <constraint firstAttribute="bottom" secondItem="gAC-sa-B4R" secondAttribute="bottom" id="ZWy-9n-QAO"/>
-                            <constraint firstItem="gAC-sa-B4R" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="dEw-Ud-uYP"/>
-                            <constraint firstItem="gAC-sa-B4R" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="tUY-Q8-wyB"/>
-                            <constraint firstItem="gAC-sa-B4R" firstAttribute="trailing" secondItem="Ze5-6b-2t3" secondAttribute="trailing" id="wnm-bX-BxC"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -42,7 +35,6 @@
     </scenes>
     <resources>
         <image name="launch_icon" width="256" height="256"/>
-        <image name="main_background" width="270" height="480"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

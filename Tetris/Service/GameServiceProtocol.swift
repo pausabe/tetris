@@ -14,6 +14,7 @@ protocol GameServiceProtocol{
     var delegate: GameServiceDelegate? { get set }
     var currentScore: Int { get }
     
+    func initGame(rows: Int, columns: Int)
     func play()
     func pause()
     func stop()

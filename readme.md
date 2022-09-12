@@ -7,3 +7,4 @@ Used Design Patterns:
 - Dependency Injection
 - Service Locator
 - Protocol Delegate
+- View Controller Containment

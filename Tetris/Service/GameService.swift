@@ -41,6 +41,10 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         
         self.timerService?.delegate = self
     }
+    
+    func initGame(rows: Int, columns: Int) {
+        boardService.initBoardMap(rows: rows, columns: columns)
+    }
 
     func play() {
         if currentState == GameState.stopped{

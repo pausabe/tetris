@@ -13,16 +13,9 @@ class BoardService : BoardServiceProtocol{
     var tetrominoStartingColumn: Int = 0
     var tetrominoStartingRow: Int = 0
     
-    init(rows: Int,
-         columns: Int){
-        initBoardMap(rows: rows, columns: columns)
+    func initBoardMap(rows: Int, columns: Int){
+        board = Board(rows: rows, columns: columns)
         declareTetrominoStartPosition()
-    }
-    
-    func initBoardMap(rows: Int,
-                      columns: Int){
-        board = Board(rows: rows,
-                      columns: columns)
     }
     
     func declareTetrominoStartPosition(){

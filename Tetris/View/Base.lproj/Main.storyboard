@@ -77,7 +77,7 @@
                                             <constraint firstAttribute="height" constant="80" id="mga-VL-yjf"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-J2-m3L" userLabel="Game View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-J2-m3L" userLabel="Board View">
                                         <rect key="frame" x="0.0" y="90" width="330" height="546"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tWd-6f-lb1" userLabel="Buttons Stack">
@@ -175,9 +175,9 @@
                     <connections>
                         <outlet property="downButton" destination="r2y-me-b0c" id="bmS-SS-uAZ"/>
                         <outlet property="gameView" destination="g6g-J2-m3L" id="WL7-iu-Opj"/>
-                        <outlet property="leftButton" destination="pdb-0l-E82" id="a5a-fR-peG"/>
+                        <outlet property="leftButton" destination="pdb-0l-E82" id="f4B-0e-Qfw"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="QN7-zP-hgJ"/>
-                        <outlet property="rightbutton" destination="Wfc-1j-tF4" id="dFh-f5-h5C"/>
+                        <outlet property="rightButton" destination="Wfc-1j-tF4" id="Ii9-cb-Hk7"/>
                         <segue destination="xqv-aX-Gzl" kind="presentation" identifier="goToSettings" id="xcZ-sE-OCu"/>
                     </connections>
                 </viewController>

@@ -117,7 +117,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     }
     
     @discardableResult func move(_ direction: MovementDirectionEnum) -> Bool{
-        if boardService.moveTetromino(
+        if currentState == .running && boardService.moveTetromino(
             original: currentTetromino!.squares,
             desired: currentTetromino!.getDesiredSquares(direction),
             color: currentTetromino?.color){

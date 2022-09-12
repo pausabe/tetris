@@ -131,9 +131,6 @@
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="baseBackgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="leftButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="f3v-YT-2wx"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wfc-1j-tF4">
                                                         <rect key="frame" x="169.66666666666666" y="0.0" width="75.666666666666657" height="45"/>
@@ -142,9 +139,6 @@
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="baseBackgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="rightButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zvv-Il-lp1"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2y-me-b0c">
                                                         <rect key="frame" x="254.33333333333329" y="0.0" width="75.666666666666657" height="45"/>
@@ -153,9 +147,6 @@
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <color key="baseBackgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </buttonConfiguration>
-                                                        <connections>
-                                                            <action selector="downButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvz-XL-yQg"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -182,8 +173,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="downButton" destination="r2y-me-b0c" id="bmS-SS-uAZ"/>
                         <outlet property="gameView" destination="g6g-J2-m3L" id="WL7-iu-Opj"/>
+                        <outlet property="leftButton" destination="pdb-0l-E82" id="a5a-fR-peG"/>
                         <outlet property="mainView" destination="8bC-Xf-vdC" id="QN7-zP-hgJ"/>
+                        <outlet property="rightbutton" destination="Wfc-1j-tF4" id="dFh-f5-h5C"/>
                         <segue destination="xqv-aX-Gzl" kind="presentation" identifier="goToSettings" id="xcZ-sE-OCu"/>
                     </connections>
                 </viewController>

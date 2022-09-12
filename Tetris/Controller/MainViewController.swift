@@ -9,8 +9,11 @@ import UIKit
 import SwiftUI
 
 // set score on view
-// long press movement buttons
 // visual grid
+// key-value files
+// play pause
+// music loop
+// encapsulate and abstract all board thins in MainViewController
 
 class MainViewController: UIViewController, GameServiceDelegate {
 
@@ -23,13 +26,24 @@ class MainViewController: UIViewController, GameServiceDelegate {
     var rowNumber: Int = 0
     var columnNumber: Int = 0
     var boardView: UIView!
+    var timer: Timer?
     
     @IBOutlet var mainView: UIView!
     @IBOutlet weak var gameView: UIView!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightbutton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
     
     override func viewDidLoad() {
         // TODO: move hex color to Keys file
         mainView.applyGradient(colours: [ViewHelper.getColorByHex(rgbHexValue: 0x033650), .black])
+        
+        leftButton.addTarget(self, action: #selector(leftButtonPressed), for: .touchDown)
+        leftButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
+        rightbutton.addTarget(self, action: #selector(rightButtonPressed), for: .touchDown)
+        rightbutton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
+        downButton.addTarget(self, action: #selector(downButtonPressed), for: .touchDown)
+        downButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -81,29 +95,48 @@ class MainViewController: UIViewController, GameServiceDelegate {
 
         gameService.pause()
     }
+    
+    @objc func leftButtonPressed(_ sender: UIButton) {
+        moveLeft()
+        timer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(moveLeft), userInfo: nil, repeats: true)
+    }
+    
+    @objc func rightButtonPressed(_ sender: UIButton) {
+        moveRight()
+        timer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(moveRight), userInfo: nil, repeats: true)
+    }
+    
+    @objc func downButtonPressed(_ sender: UIButton) {
+        moveDown()
+        timer = Timer.scheduledTimer(timeInterval: 0.15, target: self, selector: #selector(moveDown), userInfo: nil, repeats: true)
+    }
+
+    @objc func buttonReleased() {
+        timer?.invalidate()
+    }
+
+    @objc func moveLeft() {
+        gameService.moveLeft()
+    }
+    
+    @objc func moveRight() {
+        gameService.moveRight()
+    }
+    
+    @objc func moveDown() {
+        gameService.moveDown()
+    }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
         mediaPlayerService.playSoundtrack()
         gameService.play()
         lastTetrominoPosition = gameService.currentTetromino!.squares
-        drawCurrentTetromino()
-    }
-    
-    @IBAction func leftButtonPressed(_ sender: UIButton) {
-        gameService.moveLeft()
-    }
-    
-    @IBAction func rightButtonPressed(_ sender: UIButton) {
-        gameService.moveRight()
+        drawTetromino(gameService!.currentTetromino!)
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
         // TODO: move literal to a keys class or something like it
         self.performSegue(withIdentifier: "goToSettings", sender: self)
-    }
-    
-    @IBAction func downButtonPressed(_ sender: UIButton) {
-        gameService.moveDown()
     }
     
     @IBAction func rotateButtonPressed(_ sender: UIButton) {
@@ -112,12 +145,12 @@ class MainViewController: UIViewController, GameServiceDelegate {
     
     func tetrominoHasMoved() {
         eraseCurrentTetrominoLastPosition()
-        drawCurrentTetromino()
+        drawTetromino(gameService!.currentTetromino!)
         lastTetrominoPosition = gameService!.currentTetromino!.squares
     }
     
     func newTetrominoAdded() {
-        drawCurrentTetromino()
+        drawTetromino(gameService!.currentTetromino!)
         lastTetrominoPosition = gameService!.currentTetromino!.squares
     }
     
@@ -148,11 +181,11 @@ class MainViewController: UIViewController, GameServiceDelegate {
         squareView?.removeFromSuperview()
     }
     
-    func drawCurrentTetromino(){
-        drawSquare(gameService.currentTetromino!.squares.firstSquare, gameService.currentTetromino!.color)
-        drawSquare(gameService.currentTetromino!.squares.secondSquare, gameService.currentTetromino!.color)
-        drawSquare(gameService.currentTetromino!.squares.thirdSquare, gameService.currentTetromino!.color)
-        drawSquare(gameService.currentTetromino!.squares.fourthSquare, gameService.currentTetromino!.color)
+    func drawTetromino(_ tetromino: Tetromino){
+        drawSquare(tetromino.squares.firstSquare, gameService.currentTetromino!.color)
+        drawSquare(tetromino.squares.secondSquare, gameService.currentTetromino!.color)
+        drawSquare(tetromino.squares.thirdSquare, gameService.currentTetromino!.color)
+        drawSquare(tetromino.squares.fourthSquare, gameService.currentTetromino!.color)
     }
     
     func drawSquare(_ square: Square, _ color: UIColor){

@@ -51,9 +51,21 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qez-Z8-yfd">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qez-Z8-yfd" userLabel="Current Score View">
                                                         <rect key="frame" x="0.0" y="20.666666666666675" width="103.33333333333333" height="59.333333333333343"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kG7-25-lD1">
+                                                                <rect key="frame" x="44.333333333333314" y="18.333333333333329" width="14.666666666666664" height="23"/>
+                                                                <fontDescription key="fontDescription" name="Abang-Regular" family="Abang" pointSize="25"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.30222992549668876" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="kG7-25-lD1" firstAttribute="centerY" secondItem="Qez-Z8-yfd" secondAttribute="centerY" id="S6k-vR-ua9"/>
+                                                            <constraint firstItem="kG7-25-lD1" firstAttribute="centerX" secondItem="Qez-Z8-yfd" secondAttribute="centerX" id="xqr-FX-wYp"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -66,9 +78,21 @@
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POC-Wf-Clt">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="POC-Wf-Clt">
                                                         <rect key="frame" x="0.0" y="20.666666666666675" width="103.33333333333333" height="59.333333333333343"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxO-Wf-uIt">
+                                                                <rect key="frame" x="44.333333333333314" y="18.333333333333329" width="14.666666666666664" height="23"/>
+                                                                <fontDescription key="fontDescription" name="Abang-Regular" family="Abang" pointSize="25"/>
+                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstItem="DxO-Wf-uIt" firstAttribute="centerX" secondItem="POC-Wf-Clt" secondAttribute="centerX" id="EXL-ip-Z8L"/>
+                                                            <constraint firstItem="DxO-Wf-uIt" firstAttribute="centerY" secondItem="POC-Wf-Clt" secondAttribute="centerY" id="N0M-j4-q1b"/>
+                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                             </stackView>
@@ -173,6 +197,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bestScoreLabel" destination="DxO-Wf-uIt" id="8iR-2q-3mz"/>
+                        <outlet property="currentScoreLabel" destination="kG7-25-lD1" id="wSp-G8-fe1"/>
                         <outlet property="downButton" destination="r2y-me-b0c" id="bmS-SS-uAZ"/>
                         <outlet property="gameView" destination="g6g-J2-m3L" id="WL7-iu-Opj"/>
                         <outlet property="leftButton" destination="pdb-0l-E82" id="f4B-0e-Qfw"/>

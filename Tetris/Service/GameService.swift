@@ -26,8 +26,8 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     var tetrominoHelper: TetrominoHelperProtocol! = nil
     
     var delegate: GameServiceDelegate?
-    var startingTimerIntervalSeconds: Double = 1.0
-    var incrementTimerSeconds: Double = 0.05 // TODO: This should increment logaritmically
+    var startingTimerIntervalSeconds: Double = 1.5
+    var incrementTimerSeconds: Double = 0.01 // TODO: This should increment logaritmically
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
     var currentScore: Int = 0

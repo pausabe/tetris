@@ -26,6 +26,8 @@ class MainViewController: UIViewController, GameServiceDelegate {
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
+    @IBOutlet weak var currentScoreLabel: UILabel!
+    @IBOutlet weak var bestScoreLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         // TODO: move this to ViewDidLoad?
         addServicesToLocator()
         loadDependencies()
+        setScoreLabels()
     }
     
     func addServicesToLocator(){
@@ -63,6 +66,11 @@ class MainViewController: UIViewController, GameServiceDelegate {
         self.mediaPlayerService = mediaPlayerService ?? ServiceLocator.shared.getService()! as MediaPlayerServiceProtocol
         self.gameService = gameService ?? ServiceLocator.shared.getService()! as GameServiceProtocol
         self.gameService.delegate = self
+    }
+    
+    func setScoreLabels(){
+        bestScoreLabel.text = String(0) // TODO:
+        currentScoreLabel.text = String(0)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -96,7 +104,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
             askDownMovement()
             selector = #selector(askDownMovement)
         case .rotation:
-            rotate()
+            askRotation()
         }
         
         if fireModeEnabled && selector != nil {
@@ -117,7 +125,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         gameService.moveDown()
     }
     
-    func rotate(){
+    func askRotation(){
         gameService.rotate()
     }
 
@@ -154,9 +162,8 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     func fullRowCleared() {
-        // TODO:
-        print("score: \(gameService.currentScore)")
         boardViewController.drawEntireBoard()
+        currentScoreLabel.text = String(gameService.currentScore)
     }
     
 }

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 enum GameState {
-    case stopped, running, paused
+    case stopped, running
 }
 
 protocol GameServiceDelegate{
@@ -46,7 +46,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         boardService.initBoardMap(rows: rows, columns: columns)
     }
 
-    func play() {
+    func startGame() {
         if currentState == GameState.stopped{
             startNewTetromino()
         }
@@ -58,16 +58,6 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     @discardableResult func startNewTetromino() -> Bool{
         currentTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
         return boardService.setNewTetrominoInBoard(squares: currentTetromino!.squares, color: currentTetromino?.color)
-    }
-
-    func pause(){
-        currentState = GameState.paused
-        timerService.stop()
-    }
-    
-    func stop(){
-        currentState = GameState.stopped
-        timerService.stop()
     }
     
     func getBoardRows() -> Int {
@@ -100,6 +90,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     
     func setGameOver(){
         timerService.stop()
+        boardService.clearBoard()
         currentState = .stopped
         delegate?.gameOver()
     }

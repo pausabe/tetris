@@ -18,6 +18,12 @@ class BoardService : BoardServiceProtocol{
         declareTetrominoStartPosition()
     }
     
+    func clearBoard() {
+        for i in 0...(board!.rowNumber - 1){
+            clearRow(i)
+        }
+    }
+    
     func declareTetrominoStartPosition(){
         tetrominoStartingRow = 0
         tetrominoStartingColumn = Int(floor(Double(board!.columnNumber / 2)))
@@ -129,9 +135,7 @@ class BoardService : BoardServiceProtocol{
     }
     
     func clearRowAndDescendAboveSquares(_ row: Int){
-        for i in 0...(board!.columnNumber - 1){
-            board!.map[row][i] = nil
-        }
+        clearRow(row)
         let firstRowToDescend = row - 1
         for rowIndex in (0...firstRowToDescend).reversed(){
             for columnIndex in 0...(board!.columnNumber - 1){
@@ -140,6 +144,12 @@ class BoardService : BoardServiceProtocol{
                     board!.map[rowIndex][columnIndex] = nil
                 }
             }
+        }
+    }
+    
+    func clearRow(_ row: Int){
+        for i in 0...(board!.columnNumber - 1){
+            board!.map[row][i] = nil
         }
     }
 }

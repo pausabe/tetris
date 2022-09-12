@@ -61,9 +61,16 @@ class BoardViewController: UIViewController{
         gridView.drawGrid(gridWidth: CGFloat(squareSize), color: .white, lineWidth: CGFloat(squarePadding))
     }
     
-    func startGame(){
+    func startBoard(){
         lastTetrominoPosition = gameService.currentTetromino!.squares
         drawTetromino(gameService!.currentTetromino!)
+    }
+    
+    func clearBoard(){
+        for squareView in boardPositionAndSubviewRelation{
+            squareView.value.removeFromSuperview()
+        }
+        boardPositionAndSubviewRelation.removeAll()
     }
     
     func eraseCurrentTetrominoLastPosition(){
@@ -76,7 +83,9 @@ class BoardViewController: UIViewController{
     }
     
     func eraseSquare(_ square: Square){
-        let squareView = boardPositionAndSubviewRelation[squareKey(square)]
+        let squareViewKey = squareKey(square)
+        let squareView = boardPositionAndSubviewRelation[squareViewKey]
+        boardPositionAndSubviewRelation.removeValue(forKey: squareViewKey)
         squareView?.removeFromSuperview()
     }
     

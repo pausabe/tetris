@@ -15,9 +15,7 @@ protocol GameServiceProtocol{
     var currentScore: Int { get }
     
     func initGame(rows: Int, columns: Int)
-    func play()
-    func pause()
-    func stop()
+    func startGame()
     @discardableResult func moveLeft() -> Bool
     @discardableResult func moveRight() -> Bool
     @discardableResult func moveDown() -> Bool

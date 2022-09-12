@@ -17,4 +17,5 @@ protocol BoardServiceProtocol{
     func setNewTetrominoInBoard(squares: TetrominoSquares, color: UIColor?) -> Bool
     func moveTetromino(original: TetrominoSquares?, desired: TetrominoSquares, color: UIColor?) -> Bool
     func clearFullRows(_ squares: TetrominoSquares) -> Int
+    func clearBoard()
 }

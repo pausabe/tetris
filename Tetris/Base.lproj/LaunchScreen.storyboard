@@ -16,15 +16,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_icon" translatesAutoresizingMaskIntoConstraints="NO" id="54h-xi-Gwk">
-                                <rect key="frame" x="79" y="320" width="256" height="256"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch_background" translatesAutoresizingMaskIntoConstraints="NO" id="tZi-Jd-qUx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="54h-xi-Gwk" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="GIL-lb-ASb"/>
-                            <constraint firstItem="54h-xi-Gwk" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Sht-go-QKu"/>
+                            <constraint firstAttribute="bottom" secondItem="tZi-Jd-qUx" secondAttribute="bottom" id="6Rq-MX-re9"/>
+                            <constraint firstItem="tZi-Jd-qUx" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="aoy-tx-UNG"/>
+                            <constraint firstItem="tZi-Jd-qUx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="mwD-RH-Mf6"/>
+                            <constraint firstAttribute="trailing" secondItem="tZi-Jd-qUx" secondAttribute="trailing" id="q7h-cq-WL6"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -34,7 +36,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch_icon" width="256" height="256"/>
+        <image name="launch_background" width="310.5" height="672"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

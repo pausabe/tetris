@@ -9,10 +9,10 @@ import UIKit
 import SwiftUI
 
 // key-value files
-// play pause
 // music loop
 // all store things
 // make some things private
+// todos
 
 class MainViewController: UIViewController, GameServiceDelegate {
 
@@ -21,22 +21,20 @@ class MainViewController: UIViewController, GameServiceDelegate {
     var gameService : GameServiceProtocol! = nil
     var buttonFireModeTimer: Timer?
     var fireTimerInterval: Float = 0.1
-    
-    @IBOutlet var mainView: UIView!
+
+    @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var gameView: UIView!
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var downButton: UIButton!
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet weak var bestScoreLabel: UILabel!
+    @IBOutlet weak var gameOverButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.add(boardViewController, view: gameView)
-        
-        // TODO: move hex color to Keys file
-        mainView.applyGradient(colours: [ViewHelper.getColorByHex(rgbHexValue: 0x0c5a82), .black])
         
         leftButton.addTarget(self, action: #selector(leftButtonPressed), for: .touchDown)
         leftButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
@@ -72,12 +70,6 @@ class MainViewController: UIViewController, GameServiceDelegate {
     func setScoreLabels(){
         bestScoreLabel.text = String(0) // TODO:
         currentScoreLabel.text = String(0)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        gameService.pause()
     }
     
     @objc func leftButtonPressed(_ sender: UIButton) {
@@ -134,9 +126,13 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
 
     @IBAction func startButtonPressed(_ sender: UIButton) {
-        mediaPlayerService.playSoundtrack()
-        gameService.play()
-        boardViewController.startGame()
+        if gameService.currentState == .stopped{
+            gameOverButton.isHidden = true
+            mediaPlayerService.play(songName: "tetris_soundtrack", resourceExtension: "mp3")
+            gameService.startGame()
+            boardViewController.clearBoard()
+            boardViewController.startBoard()
+        }
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
@@ -157,8 +153,8 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     func gameOver() {
-        // TODO:
-        print("game over")
+        gameOverButton.isHidden = false
+        mediaPlayerService.stop()
     }
     
     func fullRowCleared() {

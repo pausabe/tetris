@@ -11,14 +11,16 @@ import AVFoundation
 class MediaPlayerService : MediaPlayerServiceProtocol{
     var audioPlayer : AVAudioPlayer!
     
-    var test = "default"
-    
-    func playSoundtrack() {
+    func play(songName: String, resourceExtension: String) {
         // TODO: loop song
         // TODO: stop when minimized
-        let url = Bundle.main.url(forResource: "tetris_soundtrack", withExtension: "mp3")
+        let url = Bundle.main.url(forResource: songName, withExtension: resourceExtension)
         audioPlayer = try! AVAudioPlayer(contentsOf: url!)
         audioPlayer.play()
+    }
+    
+    func stop(){
+        audioPlayer.stop()
     }
 
 }

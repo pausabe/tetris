@@ -8,6 +8,6 @@
 import Foundation
 
 protocol MediaPlayerServiceProtocol {
-    var test : String { get set}
-    func playSoundtrack()
+    func play(songName: String, resourceExtension: String)
+    func stop()
 }

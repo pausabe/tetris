@@ -12,11 +12,12 @@ class MediaPlayerService : MediaPlayerServiceProtocol{
     var audioPlayer : AVAudioPlayer!
     
     func play(songName: String, resourceExtension: String) {
-        // TODO: loop song
-        // TODO: stop when minimized
         let url = Bundle.main.url(forResource: songName, withExtension: resourceExtension)
         audioPlayer = try! AVAudioPlayer(contentsOf: url!)
-        audioPlayer.play()
+        if audioPlayer != nil {
+            audioPlayer.numberOfLoops = -1
+            audioPlayer.play()
+        }
     }
     
     func stop(){

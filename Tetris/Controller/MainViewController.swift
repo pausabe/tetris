@@ -9,7 +9,6 @@ import UIKit
 import SwiftUI
 
 // key-value files
-// music loop
 // make some things private
 // todos
 

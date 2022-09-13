@@ -39,6 +39,7 @@
 		5F5332D528CF232F00293DDA /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5332D428CF232F00293DDA /* ViewControllerExtensions.swift */; };
 		5F5332D728CF23DC00293DDA /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5332D628CF23DC00293DDA /* BoardViewController.swift */; };
 		5F5332D828CF604200293DDA /* Abang.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A183928CDCF4D005B7730 /* Abang.otf */; };
+		5F7F006E28D09EE500CEDD1C /* NextTetrominoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F006D28D09EE500CEDD1C /* NextTetrominoViewController.swift */; };
 		5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */; };
 		5FA2A6CC28CDBE2500BFCBC2 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */; };
 		5FED985F28D06DFF00F65E94 /* TetrominoDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */; };
@@ -124,6 +125,7 @@
 		5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceMock.swift; sourceTree = "<group>"; };
 		5F5332D428CF232F00293DDA /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		5F5332D628CF23DC00293DDA /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		5F7F006D28D09EE500CEDD1C /* NextTetrominoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTetrominoViewController.swift; sourceTree = "<group>"; };
 		5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDirectionEnum.swift; sourceTree = "<group>"; };
 		5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoDrawer.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				5F4857CE28BFAACF00BD5BEE /* MainViewController.swift */,
 				5F48581C28C63C1500BD5BEE /* SettingsViewController.swift */,
 				5F5332D628CF23DC00293DDA /* BoardViewController.swift */,
+				5F7F006D28D09EE500CEDD1C /* NextTetrominoViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -465,6 +468,7 @@
 				5FED985F28D06DFF00F65E94 /* TetrominoDrawer.swift in Sources */,
 				5F4857CF28BFAACF00BD5BEE /* MainViewController.swift in Sources */,
 				5F4857E828C3A33F00BD5BEE /* MediaPlayerService.swift in Sources */,
+				5F7F006E28D09EE500CEDD1C /* NextTetrominoViewController.swift in Sources */,
 				5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */,
 				5F48581F28C64DA400BD5BEE /* Board.swift in Sources */,
 				5F48583328C7466200BD5BEE /* TimerService.swift in Sources */,

@@ -42,6 +42,7 @@
 		5F5332D828CF604200293DDA /* Abang.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A183928CDCF4D005B7730 /* Abang.otf */; };
 		5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */; };
 		5FA2A6CC28CDBE2500BFCBC2 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */; };
+		5FED985F28D06DFF00F65E94 /* TetrominoDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		5F5332D628CF23DC00293DDA /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDirectionEnum.swift; sourceTree = "<group>"; };
 		5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoDrawer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 				5F48582D28C733A600BD5BEE /* ServiceLocator.swift */,
 				5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */,
 				5F5332D428CF232F00293DDA /* ViewControllerExtensions.swift */,
+				5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FED985F28D06DFF00F65E94 /* TetrominoDrawer.swift in Sources */,
 				5F4857CF28BFAACF00BD5BEE /* MainViewController.swift in Sources */,
 				5F4857E828C3A33F00BD5BEE /* MediaPlayerService.swift in Sources */,
 				5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */,

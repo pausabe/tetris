@@ -17,7 +17,6 @@ class BoardViewController: UIViewController{
     var rowNumber: Int = 0
     var columnNumber: Int = 0
     var playableBoardView: UIView!
-    let squarePadding: Float = 0.4
     
     override func viewDidAppear(_ animated: Bool) {
         loadDependencies()
@@ -58,7 +57,7 @@ class BoardViewController: UIViewController{
         let gridView: GridView = GridView()
         gridView.frame = playableBoardView.bounds
         playableBoardView.addSubview(gridView)
-        gridView.drawGrid(gridWidth: CGFloat(squareSize), color: .white, lineWidth: CGFloat(squarePadding))
+        gridView.drawGrid(gridWidth: CGFloat(squareSize), color: .white, lineWidth: CGFloat(TetrominoDrawer.squarePadding))
     }
     
     func startBoard(){
@@ -97,10 +96,10 @@ class BoardViewController: UIViewController{
     }
     
     func drawSquare(_ square: Square, _ color: UIColor){
-        let squareView : UIView = createSquare(
-            x: (Float(square.column) * squareSize) + squarePadding,
-            y: (Float(square.row) * squareSize) + squarePadding,
-            size: squareSize - (squarePadding * 2),
+        let squareView = TetrominoDrawer.generateSquareView(
+            x: (Float(square.column) * squareSize),
+            y: (Float(square.row) * squareSize),
+            squareSize: squareSize,
             color: color)
         
         playableBoardView.addSubview(squareView)
@@ -109,14 +108,6 @@ class BoardViewController: UIViewController{
     
     func squareKey(_ square: Square) -> String{
         return "\(square.row)_\(square.column)"
-    }
-    
-    func createSquare(x: Float, y: Float, size: Float, color: UIColor) -> UIView{
-        let viewRectFrame = CGRect(x: CGFloat(x), y: CGFloat(y), width: CGFloat(size), height: CGFloat(size))
-        let retView = UIView(frame: viewRectFrame)
-        retView.backgroundColor = color
-        retView.alpha = CGFloat(1.0)
-        return retView
     }
     
     func drawEntireBoard(){

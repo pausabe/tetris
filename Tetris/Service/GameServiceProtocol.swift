@@ -11,6 +11,7 @@ import UIKit
 protocol GameServiceProtocol{
     var currentState: GameState { get }
     var currentTetromino: Tetromino? { get }
+    var nextTetromino: Tetromino? { get }
     var delegate: GameServiceDelegate? { get set }
     var currentScore: Int { get }
     

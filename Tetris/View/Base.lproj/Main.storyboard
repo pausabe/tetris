@@ -255,6 +255,7 @@
                         <outlet property="gameOverButton" destination="Ta9-2r-RhN" id="5vR-Jy-QTM"/>
                         <outlet property="gameView" destination="g6g-J2-m3L" id="WL7-iu-Opj"/>
                         <outlet property="leftButton" destination="a8P-Y9-Brp" id="d6P-rS-Ejw"/>
+                        <outlet property="nextTetrominoView" destination="Jbm-HF-hfZ" id="aMR-7y-hiC"/>
                         <outlet property="rightButton" destination="Wfc-1j-tF4" id="Ii9-cb-Hk7"/>
                         <outlet property="startButton" destination="nJA-4S-cJr" id="ugQ-NA-r8v"/>
                         <segue destination="xqv-aX-Gzl" kind="presentation" identifier="goToSettings" id="xcZ-sE-OCu"/>

@@ -28,6 +28,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     var delegate: GameServiceDelegate?
     var startingTimerIntervalSeconds: Double = 1.5
     var incrementTimerSeconds: Double = 0.01 // TODO: This should increment logaritmically
+    var nextTetromino: Tetromino?
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
     var currentScore: Int = 0
@@ -48,6 +49,7 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
 
     func startGame() {
         if currentState == GameState.stopped{
+            nextTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
             startNewTetromino()
         }
         
@@ -56,7 +58,8 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
     }
     
     @discardableResult func startNewTetromino() -> Bool{
-        currentTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
+        currentTetromino = nextTetromino
+        nextTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
         return boardService.setNewTetrominoInBoard(squares: currentTetromino!.squares, color: currentTetromino?.color)
     }
     

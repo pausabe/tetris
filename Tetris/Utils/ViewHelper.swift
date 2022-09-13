@@ -53,7 +53,7 @@ class GridView: UIView {
         // Horizontal
         var pointLeft = CGPoint(x: 0, y: 0)
         var pointRight = CGPoint(x: bounds.size.width, y: 0)
-        while pointLeft.y <= bounds.height {
+        while (pointLeft.y - lineWidth) <= bounds.height {
             gridPath.move(to: pointLeft)
             gridPath.addLine(to: pointRight)
             pointLeft.y = pointLeft.y + gridWidth
@@ -63,7 +63,7 @@ class GridView: UIView {
         // Vertical
         var pointTop = CGPoint(x: 0, y: 0)
         var pointBottom = CGPoint(x: 0, y: bounds.size.height)
-        while (pointTop.x - 1) <= bounds.width {
+        while (pointTop.x - lineWidth) <= bounds.width {
             gridPath.move(to: pointTop)
             gridPath.addLine(to: pointBottom)
             pointTop.x = pointTop.x + gridWidth

@@ -13,6 +13,7 @@ import SwiftUI
 // all store things
 // make some things private
 // todos
+// tests passing
 
 class MainViewController: UIViewController, GameServiceDelegate {
 
@@ -30,6 +31,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     @IBOutlet weak var currentScoreLabel: UILabel!
     @IBOutlet weak var bestScoreLabel: UILabel!
     @IBOutlet weak var gameOverButton: UIButton!
+    @IBOutlet weak var nextTetrominoView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +132,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
             gameOverButton.isHidden = true
             mediaPlayerService.play(songName: "tetris_soundtrack", resourceExtension: "mp3")
             gameService.startGame()
+            drawNextTetromino()
             boardViewController.clearBoard()
             boardViewController.startBoard()
         }
@@ -148,8 +151,63 @@ class MainViewController: UIViewController, GameServiceDelegate {
         boardViewController.drawTetrominoMovement()
     }
     
+    // TODO: move next tetro thing to another controller
+    
     func newTetrominoAdded() {
+        drawNextTetromino()
         boardViewController.drawNewTetrominoAdded()
+    }
+    
+    func drawNextTetromino(){
+        nextTetrominoView.subviews.forEach({ $0.removeFromSuperview() })
+        
+        var verticalPadding: Float = 5
+        let containerWidth = Float(nextTetrominoView.frame.size.width)
+        let containerHeight = Float(nextTetrominoView.frame.size.height) - (verticalPadding * 2)
+        let rows = 4
+        let columns = 4
+        let squareSize = containerHeight / Float(rows)
+        let horizontalPadding = (containerWidth - containerHeight) / 2
+        
+        let freeVerticalSquares = freeVerticalSquares(gameService.nextTetromino!, rows)
+        verticalPadding += Float(freeVerticalSquares) * squareSize / 2
+        
+        drawNextTetrominoSquare(gameService.nextTetromino!.squares.firstSquare, horizontalPadding, verticalPadding, squareSize, rows, columns)
+        drawNextTetrominoSquare(gameService.nextTetromino!.squares.secondSquare, horizontalPadding, verticalPadding, squareSize, rows, columns)
+        drawNextTetrominoSquare(gameService.nextTetromino!.squares.thirdSquare, horizontalPadding, verticalPadding, squareSize, rows, columns)
+        drawNextTetrominoSquare(gameService.nextTetromino!.squares.fourthSquare, horizontalPadding, verticalPadding, squareSize, rows, columns)
+    }
+    
+    func freeVerticalSquares(_ tetromino: Tetromino, _ rows: Int) -> Int {
+        var differentRows = [Int]()
+        let firstRow = tetromino.squares.firstSquare.row % rows
+        differentRows.append(firstRow)
+        let secondRow = tetromino.squares.secondSquare.row % rows
+        if !differentRows.contains(secondRow){
+            differentRows.append(secondRow)
+        }
+        let thirdRow = tetromino.squares.thirdSquare.row % rows
+        if !differentRows.contains(thirdRow){
+            differentRows.append(thirdRow)
+        }
+        let fourthRow = tetromino.squares.fourthSquare.row % rows
+        if !differentRows.contains(fourthRow){
+            differentRows.append(fourthRow)
+        }
+        
+        return rows - differentRows.count
+    }
+    
+    func drawNextTetrominoSquare(_ square: Square, _ horizontalPadding: Float, _ verticalPadding: Float, _ squareSize: Float, _ rows: Int, _ columns: Int){
+        let row = square.row % rows
+        let column = square.column % columns
+        let x = horizontalPadding + (Float(column) * squareSize)
+        let y = verticalPadding + (Float(row) * squareSize)
+        nextTetrominoView.addSubview(TetrominoDrawer.generateSquareView(
+            x: x,
+            y: y,
+            squareSize: squareSize,
+            color: gameService.nextTetromino!.color))
     }
     
     func gameOver() {

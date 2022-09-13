@@ -46,8 +46,7 @@ class BoardViewController: UIViewController{
         
         let viewRectFrame = CGRect(x: CGFloat(xOffsetToCenterBoard), y: CGFloat(0), width: CGFloat(boardWidth), height: CGFloat(Float(rowNumber) * squareSize))
         playableBoardView = UIView(frame: viewRectFrame)
-        // TODO: move color somwhere else
-        playableBoardView.backgroundColor = UIColor(Color.white.opacity(0.25))
+        playableBoardView.backgroundColor = ColorKeys.playableBoardBackground
         
         self.view.addSubview(playableBoardView)
         gameService.initGame(rows: rowNumber, columns: columnNumber)

@@ -11,6 +11,8 @@ import AVFoundation
 class MediaPlayerService : MediaPlayerServiceProtocol{
     var audioPlayer : AVAudioPlayer!
     
+    static var mp3Extension = "mp3"
+    
     func play(songName: String, resourceExtension: String) {
         let url = Bundle.main.url(forResource: songName, withExtension: resourceExtension)
         audioPlayer = try! AVAudioPlayer(contentsOf: url!)

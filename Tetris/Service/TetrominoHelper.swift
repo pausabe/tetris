@@ -9,7 +9,6 @@ import Foundation
 
 class TetrominoHelper : TetrominoHelperProtocol {
     func newRandomTetromino(_ startingRow: Int, _ startingColumn: Int) -> Tetromino{
-        // TODO: also we should determine the rotation randomly
         switch(Int.random(in: 1...7)){
         case 1:
             return LTetromino(startingRow, startingColumn)

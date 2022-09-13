@@ -20,7 +20,7 @@ class TimerService : TimerServiceProtocol{
     func start(intervalSeconds: Double) {
         timer?.invalidate()
         currentIntervalSeconds = intervalSeconds
-        timer = Timer.scheduledTimer(timeInterval: intervalSeconds, target:self, selector: #selector(timerTick), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: intervalSeconds, target: self, selector: #selector(timerTick), userInfo: nil, repeats: true)
     }
     
     func stop() {

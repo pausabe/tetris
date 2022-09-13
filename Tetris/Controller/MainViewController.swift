@@ -8,10 +8,6 @@
 import UIKit
 import SwiftUI
 
-// key-value files
-// make some things private
-// todos
-
 class MainViewController: UIViewController, GameServiceDelegate {
 
     var boardViewController = BoardViewController()
@@ -45,13 +41,12 @@ class MainViewController: UIViewController, GameServiceDelegate {
         downButton.addTarget(self, action: #selector(downButtonPressed), for: .touchDown)
         downButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
         
-        if defaults.object(forKey: "audioIsEnabled") == nil{
-            defaults.set(true, forKey: "audioIsEnabled")
+        if defaults.object(forKey: StoreKeys.audioIsEnabled) == nil{
+            defaults.set(true, forKey: StoreKeys.audioIsEnabled)
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // TODO: move this to ViewDidLoad?
         addServicesToLocator()
         loadDependencies()
         setScoreLabels()
@@ -65,7 +60,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         ServiceLocator.shared.addService(service: GameService())
     }
     
-    // ViewControllers does not have init() constructor. We let accessible this method to load the dependencies as desired
+    /// ViewControllers does not have init() constructor. We let accessible this method to load the dependencies as desired
     public func loadDependencies(mediaPlayerService : MediaPlayerServiceProtocol? = nil,
                                  gameService : GameServiceProtocol? = nil){
         self.mediaPlayerService = mediaPlayerService ?? ServiceLocator.shared.getService()! as MediaPlayerServiceProtocol
@@ -74,7 +69,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     func setScoreLabels(){
-        bestScoreLabel.text = String(defaults.integer(forKey: "bestScore"))
+        bestScoreLabel.text = String(defaults.integer(forKey: StoreKeys.bestScore))
         currentScoreLabel.text = String(0)
     }
     
@@ -134,8 +129,8 @@ class MainViewController: UIViewController, GameServiceDelegate {
     @IBAction func startButtonPressed(_ sender: UIButton) {
         if gameService.currentState == .stopped{
             gameOverButton.isHidden = true
-            if defaults.bool(forKey: "audioIsEnabled"){
-                mediaPlayerService.play(songName: "tetris_soundtrack", resourceExtension: "mp3")
+            if defaults.bool(forKey: StoreKeys.audioIsEnabled){
+                mediaPlayerService.play(songName: SongKeys.backgroundSong, resourceExtension: MediaPlayerService.mp3Extension)
             }
             setScoreLabels()
             gameService.startGame()
@@ -146,8 +141,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     @IBAction func settingsButtonPressed(_ sender: UIButton) {
-        // TODO: move literal to a keys class or something like it
-        self.performSegue(withIdentifier: "goToSettings", sender: self)
+        self.performSegue(withIdentifier: SegueKeys.goToSettings, sender: self)
     }
     
     @IBAction func rotateButtonPressed(_ sender: UIButton) {
@@ -158,8 +152,6 @@ class MainViewController: UIViewController, GameServiceDelegate {
         boardViewController.drawTetrominoMovement()
     }
     
-    // TODO: move next tetro thing to another controller
-    
     func newTetrominoAdded() {
         nextTetrominoViewController.drawNextTetromino(gameService.nextTetromino!)
         boardViewController.drawNewTetrominoAdded()
@@ -168,7 +160,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     func gameOver() {
         gameOverButton.isHidden = false
         mediaPlayerService.stop()
-        defaults.set(gameService.currentScore, forKey: "bestScore")
+        defaults.set(gameService.currentScore, forKey: StoreKeys.bestScore)
     }
     
     func fullRowCleared() {

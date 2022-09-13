@@ -40,6 +40,10 @@
 		5F5332D728CF23DC00293DDA /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F5332D628CF23DC00293DDA /* BoardViewController.swift */; };
 		5F5332D828CF604200293DDA /* Abang.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5F3A183928CDCF4D005B7730 /* Abang.otf */; };
 		5F7F006E28D09EE500CEDD1C /* NextTetrominoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F006D28D09EE500CEDD1C /* NextTetrominoViewController.swift */; };
+		5F7F007028D0A2B400CEDD1C /* StoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F006F28D0A2B400CEDD1C /* StoreKeys.swift */; };
+		5F7F007328D0A36500CEDD1C /* SongKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F007228D0A36500CEDD1C /* SongKeys.swift */; };
+		5F7F007528D0A42F00CEDD1C /* SequeKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F007428D0A42F00CEDD1C /* SequeKeys.swift */; };
+		5F7F007728D0A5ED00CEDD1C /* ColorKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7F007628D0A5ED00CEDD1C /* ColorKeys.swift */; };
 		5FA2A6CA28CCD83E00BFCBC2 /* MovementDirectionEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */; };
 		5FA2A6CC28CDBE2500BFCBC2 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */; };
 		5FED985F28D06DFF00F65E94 /* TetrominoDrawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */; };
@@ -126,6 +130,10 @@
 		5F5332D428CF232F00293DDA /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		5F5332D628CF23DC00293DDA /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		5F7F006D28D09EE500CEDD1C /* NextTetrominoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextTetrominoViewController.swift; sourceTree = "<group>"; };
+		5F7F006F28D0A2B400CEDD1C /* StoreKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKeys.swift; sourceTree = "<group>"; };
+		5F7F007228D0A36500CEDD1C /* SongKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongKeys.swift; sourceTree = "<group>"; };
+		5F7F007428D0A42F00CEDD1C /* SequeKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequeKeys.swift; sourceTree = "<group>"; };
+		5F7F007628D0A5ED00CEDD1C /* ColorKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorKeys.swift; sourceTree = "<group>"; };
 		5FA2A6C928CCD83E00BFCBC2 /* MovementDirectionEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovementDirectionEnum.swift; sourceTree = "<group>"; };
 		5FA2A6CB28CDBE2500BFCBC2 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		5FED985E28D06DFF00F65E94 /* TetrominoDrawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TetrominoDrawer.swift; sourceTree = "<group>"; };
@@ -205,10 +213,11 @@
 				5F4857E528C3986A00BD5BEE /* Controller */,
 				5F4857EA28C3A34D00BD5BEE /* Service */,
 				5F48582F28C733B300BD5BEE /* Utils */,
+				5F7F007128D0A2B800CEDD1C /* Keys */,
+				5F3A183828CDCF39005B7730 /* Assets */,
 				5F4857D328BFAAD000BD5BEE /* Assets.xcassets */,
 				5F4857D528BFAAD000BD5BEE /* LaunchScreen.storyboard */,
 				5F4857D828BFAAD000BD5BEE /* Info.plist */,
-				5F3A183828CDCF39005B7730 /* Assets */,
 			);
 			path = Tetris;
 			sourceTree = "<group>";
@@ -287,6 +296,17 @@
 				5F48584728C9CDB800BD5BEE /* TimerServiceMock.swift */,
 			);
 			path = Mock;
+			sourceTree = "<group>";
+		};
+		5F7F007128D0A2B800CEDD1C /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				5F7F007228D0A36500CEDD1C /* SongKeys.swift */,
+				5F7F006F28D0A2B400CEDD1C /* StoreKeys.swift */,
+				5F7F007428D0A42F00CEDD1C /* SequeKeys.swift */,
+				5F7F007628D0A5ED00CEDD1C /* ColorKeys.swift */,
+			);
+			path = Keys;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -476,8 +496,12 @@
 				5F48581D28C63C1500BD5BEE /* SettingsViewController.swift in Sources */,
 				5F48581728C5E69900BD5BEE /* GameServiceProtocol.swift in Sources */,
 				5F5332D528CF232F00293DDA /* ViewControllerExtensions.swift in Sources */,
+				5F7F007028D0A2B400CEDD1C /* StoreKeys.swift in Sources */,
 				5F4857CB28BFAACF00BD5BEE /* AppDelegate.swift in Sources */,
+				5F7F007528D0A42F00CEDD1C /* SequeKeys.swift in Sources */,
+				5F7F007328D0A36500CEDD1C /* SongKeys.swift in Sources */,
 				5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */,
+				5F7F007728D0A5ED00CEDD1C /* ColorKeys.swift in Sources */,
 				5F48581328C5D08E00BD5BEE /* MediaPlayerServiceProtocol.swift in Sources */,
 				5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */,
 				5F48584328C89B9E00BD5BEE /* TetrominoHelper.swift in Sources */,

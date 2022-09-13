@@ -117,7 +117,7 @@ struct Rotation{
 
 class LTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xa480cf)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.LTetromino)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -142,7 +142,7 @@ class LTetromino: Tetromino{
 
 class LTetrominoInverted: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xc5f6fb)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.LTetrominoInverted)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -167,7 +167,7 @@ class LTetrominoInverted: Tetromino{
 
 class SkewTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xff8877)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.skewTetromino)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -190,7 +190,7 @@ class SkewTetromino: Tetromino{
 
 class SkewTetrominoInverted: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xffff82)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.skewTetrominoInverted)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -213,7 +213,7 @@ class SkewTetrominoInverted: Tetromino{
 
 class TTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0x6cccda)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.TTetromino)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -238,7 +238,7 @@ class TTetromino: Tetromino{
 
 class StraightTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xb3e2a6)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.straightTetromino)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     
@@ -261,7 +261,7 @@ class StraightTetromino: Tetromino{
 
 class SquareTetromino: Tetromino{
     var squares = TetrominoSquares()
-    let color = ViewHelper.getColorByHex(rgbHexValue: 0xffd670)
+    let color = ViewHelper.getColorByHex(rgbHexValue: ColorKeys.squareTetromino)
     var rotations = [Rotation]()
     var currentRotation: Int = 0
     

@@ -16,11 +16,11 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        audioSwitch.isOn = defaults.bool(forKey: "audioIsEnabled")
+        audioSwitch.isOn = defaults.bool(forKey: StoreKeys.audioIsEnabled)
     }
 
     @IBAction func audioSwitchValueChanged(_ sender: UISwitch) {
-        defaults.set(audioSwitch.isOn, forKey: "audioIsEnabled")
+        defaults.set(audioSwitch.isOn, forKey: StoreKeys.audioIsEnabled)
     }
 
 }

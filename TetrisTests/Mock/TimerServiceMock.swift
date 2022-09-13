@@ -22,4 +22,8 @@ class TimerServiceMock : TimerServiceProtocol{
     func forceTimerTick(){
         delegate?.timerTick()
     }
+    
+    func incrementSpeed(_ incrementSeconds: Double) {
+        
+    }
 }

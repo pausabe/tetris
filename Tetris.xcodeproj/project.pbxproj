@@ -27,7 +27,6 @@
 		5F48581F28C64DA400BD5BEE /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48581E28C64DA400BD5BEE /* Board.swift */; };
 		5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */; };
 		5F48582E28C733A600BD5BEE /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48582D28C733A600BD5BEE /* ServiceLocator.swift */; };
-		5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */; };
 		5F48583328C7466200BD5BEE /* TimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583228C7466200BD5BEE /* TimerService.swift */; };
 		5F48583528C7468200BD5BEE /* TimerServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */; };
 		5F48583728C7720700BD5BEE /* BoardServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */; };
@@ -114,7 +113,6 @@
 		5F48582428C72E8E00BD5BEE /* TetrisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TetrisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameServiceTests.swift; sourceTree = "<group>"; };
 		5F48582D28C733A600BD5BEE /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
-		5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocatorServiceTests.swift; sourceTree = "<group>"; };
 		5F48583228C7466200BD5BEE /* TimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerService.swift; sourceTree = "<group>"; };
 		5F48583428C7468200BD5BEE /* TimerServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerServiceProtocol.swift; sourceTree = "<group>"; };
 		5F48583628C7720700BD5BEE /* BoardServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardServiceProtocol.swift; sourceTree = "<group>"; };
@@ -261,7 +259,6 @@
 			isa = PBXGroup;
 			children = (
 				5F48582628C72E8E00BD5BEE /* GameServiceTests.swift */,
-				5F48583028C7394F00BD5BEE /* LocatorServiceTests.swift */,
 				5F48583A28C7744500BD5BEE /* BoardServiceTests.swift */,
 				5F48584628C8EF6F00BD5BEE /* Mock */,
 			);
@@ -509,7 +506,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F48584828C9CDB800BD5BEE /* TimerServiceMock.swift in Sources */,
-				5F48583128C7394F00BD5BEE /* LocatorServiceTests.swift in Sources */,
 				5F48583D28C89B2100BD5BEE /* TetrominoHelperMock.swift in Sources */,
 				5F48582728C72E8E00BD5BEE /* GameServiceTests.swift in Sources */,
 				5F48583B28C7744500BD5BEE /* BoardServiceTests.swift in Sources */,

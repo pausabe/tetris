@@ -13,7 +13,6 @@ import SwiftUI
 // all store things
 // make some things private
 // todos
-// tests passing
 
 class MainViewController: UIViewController, GameServiceDelegate {
 

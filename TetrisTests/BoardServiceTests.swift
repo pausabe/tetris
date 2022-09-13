@@ -25,7 +25,8 @@ class BoardServiceTests: XCTestCase {
     }
     
     func setFirstTetrominoInPlace(){
-        boardService = BoardService(rows: 20, columns: 10)
+        boardService = BoardService()
+        boardService?.initBoardMap(rows: 20, columns: 10)
         tetromino = StraightTetromino(boardService!.tetrominoStartingRow,
                                       boardService!.tetrominoStartingColumn)
         XCTAssertTrue(boardService!.moveTetromino(original: tetromino!.squares, desired: tetromino!.squares, color: tetromino!.color))

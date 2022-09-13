@@ -19,9 +19,11 @@ class GameServiceTests: XCTestCase {
     override func setUp() {
         tetrominoHelperMock = TetrominoHelperMock()
         timerService = TimerServiceMock()
+        let boardServie = BoardService()
+        boardServie.initBoardMap(rows: rows, columns: columns)
         gameService = GameService(
             timerService: timerService,
-            boardService: BoardService(rows: rows, columns: columns),
+            boardService: boardServie,
             tetrominoService: tetrominoHelperMock)
     }
     
@@ -34,7 +36,7 @@ class GameServiceTests: XCTestCase {
         XCTAssertNil(gameService.currentTetromino)
         
         tetrominoHelperMock.randomTetromino = randomTetromino
-        gameService!.play()
+        gameService!.startGame()
         
         XCTAssertNotNil(gameService.currentTetromino)
         XCTAssertEqual(gameService.currentState, GameState.running)

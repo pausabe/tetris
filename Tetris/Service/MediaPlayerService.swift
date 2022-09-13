@@ -20,7 +20,9 @@ class MediaPlayerService : MediaPlayerServiceProtocol{
     }
     
     func stop(){
-        audioPlayer.stop()
+        if audioPlayer != nil && audioPlayer.isPlaying{
+            audioPlayer.stop()
+        }
     }
 
 }

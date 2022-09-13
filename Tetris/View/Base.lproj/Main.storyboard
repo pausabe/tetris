@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -26,7 +27,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bgs-Ai-5Jy" userLabel="Main Stack">
-                                <rect key="frame" x="30" y="54" width="330" height="746"/>
+                                <rect key="frame" x="30" y="57" width="330" height="743"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-BD-Ync" userLabel="Info Stack">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="80"/>
@@ -121,10 +122,10 @@
                                         </constraints>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g6g-J2-m3L" userLabel="Board View">
-                                        <rect key="frame" x="0.0" y="90" width="330" height="546"/>
+                                        <rect key="frame" x="0.0" y="90" width="330" height="543"/>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tWd-6f-lb1" userLabel="Buttons Stack">
-                                        <rect key="frame" x="0.0" y="646" width="330" height="100"/>
+                                        <rect key="frame" x="0.0" y="643" width="330" height="100"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RdW-zW-RTI" userLabel="Top Buttons Stack">
                                                 <rect key="frame" x="0.0" y="0.0" width="330" height="45"/>
@@ -270,11 +271,11 @@
             <objects>
                 <viewController title="Settings" id="xqv-aX-Gzl" customClass="SettingsViewController" customModule="Tetris" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bK-py-m3P">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IG3-Vg-3Bd">
-                                <rect key="frame" x="0.0" y="74" width="390" height="50"/>
+                                <rect key="frame" x="0.0" y="77" width="390" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Audio:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xi4-sX-ZYM">
                                         <rect key="frame" x="0.0" y="15.999999999999998" width="195" height="18.333333333333329"/>
@@ -285,6 +286,9 @@
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PEC-dZ-c9S">
                                         <rect key="frame" x="195" y="9.6666666666666714" width="197" height="31"/>
                                         <color key="onTintColor" red="0.10408321099999999" green="0.19108338599999999" blue="0.26542358700000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <action selector="audioSwitchValueChanged:" destination="xqv-aX-Gzl" eventType="valueChanged" id="6fu-DW-iTg"/>
+                                        </connections>
                                     </switch>
                                 </subviews>
                                 <constraints>
@@ -301,6 +305,9 @@
                             <constraint firstItem="IG3-Vg-3Bd" firstAttribute="leading" secondItem="eA2-aH-QPC" secondAttribute="leading" id="wsj-X0-lFz"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="audioSwitch" destination="PEC-dZ-c9S" id="gAz-lJ-Idj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YP0-IT-wIe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -308,13 +315,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.down" catalog="system" width="120" height="128"/>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="arrow.right" catalog="system" width="128" height="98"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
+        <image name="arrow.down" catalog="system" width="118" height="128"/>
+        <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="gear" catalog="system" width="128" height="122"/>
         <image name="main_background" width="310.33334350585938" height="672"/>
-        <image name="play" catalog="system" width="120" height="128"/>
-        <image name="rotate.left" catalog="system" width="118" height="128"/>
+        <image name="play" catalog="system" width="117" height="128"/>
+        <image name="rotate.left" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -8,13 +8,19 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-
+    
+    let defaults = UserDefaults.standard
+    
+    @IBOutlet weak var audioSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        audioSwitch.isOn = defaults.bool(forKey: "audioIsEnabled")
     }
 
     @IBAction func audioSwitchValueChanged(_ sender: UISwitch) {
-        // TODO: implement something like store service
+        defaults.set(audioSwitch.isOn, forKey: "audioIsEnabled")
     }
 
 }

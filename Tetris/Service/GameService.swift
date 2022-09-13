@@ -51,10 +51,10 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         if currentState == GameState.stopped{
             nextTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
             startNewTetromino()
+            currentState = GameState.running
+            currentScore = 0
+            timerService.start(intervalSeconds: startingTimerIntervalSeconds)
         }
-        
-        currentState = GameState.running
-        timerService.start(intervalSeconds: startingTimerIntervalSeconds)
     }
     
     @discardableResult func startNewTetromino() -> Bool{

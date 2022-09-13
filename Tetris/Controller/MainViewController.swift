@@ -8,9 +8,9 @@
 import UIKit
 import SwiftUI
 
+// move next things to another controller?
 // key-value files
 // music loop
-// all store things
 // make some things private
 // todos
 
@@ -21,6 +21,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     var gameService : GameServiceProtocol! = nil
     var buttonFireModeTimer: Timer?
     var fireTimerInterval: Float = 0.1
+    let defaults = UserDefaults.standard
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var gameView: UIView!
@@ -43,6 +44,10 @@ class MainViewController: UIViewController, GameServiceDelegate {
         rightButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
         downButton.addTarget(self, action: #selector(downButtonPressed), for: .touchDown)
         downButton.addTarget(self, action: #selector(buttonReleased), for: [.touchUpInside, .touchUpOutside])
+        
+        if defaults.object(forKey: "audioIsEnabled") == nil{
+            defaults.set(true, forKey: "audioIsEnabled")
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +74,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     }
     
     func setScoreLabels(){
-        bestScoreLabel.text = String(0) // TODO:
+        bestScoreLabel.text = String(defaults.integer(forKey: "bestScore"))
         currentScoreLabel.text = String(0)
     }
     
@@ -129,7 +134,10 @@ class MainViewController: UIViewController, GameServiceDelegate {
     @IBAction func startButtonPressed(_ sender: UIButton) {
         if gameService.currentState == .stopped{
             gameOverButton.isHidden = true
-            mediaPlayerService.play(songName: "tetris_soundtrack", resourceExtension: "mp3")
+            if defaults.bool(forKey: "audioIsEnabled"){
+                mediaPlayerService.play(songName: "tetris_soundtrack", resourceExtension: "mp3")
+            }
+            setScoreLabels()
             gameService.startGame()
             drawNextTetromino()
             boardViewController.clearBoard()
@@ -212,6 +220,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
     func gameOver() {
         gameOverButton.isHidden = false
         mediaPlayerService.stop()
+        defaults.set(gameService.currentScore, forKey: "bestScore")
     }
     
     func fullRowCleared() {

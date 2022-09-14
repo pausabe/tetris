@@ -160,7 +160,9 @@ class MainViewController: UIViewController, GameServiceDelegate {
     func gameOver() {
         gameOverButton.isHidden = false
         mediaPlayerService.stop()
-        defaults.set(gameService.currentScore, forKey: StoreKeys.bestScore)
+        if gameService.currentScore > defaults.integer(forKey: StoreKeys.bestScore){
+            defaults.set(gameService.currentScore, forKey: StoreKeys.bestScore)
+        }
     }
     
     func fullRowCleared() {

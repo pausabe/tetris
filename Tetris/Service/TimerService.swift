@@ -14,8 +14,8 @@ protocol TimerServiceDelegate{
 class TimerService : TimerServiceProtocol{
     var delegate: TimerServiceDelegate?
     var timer: Timer?
-    var currentIntervalSeconds: Double = 0
-    let minIntervalSeconds: Double = 0.1
+    private var currentIntervalSeconds: Double = 0
+    private let minIntervalSeconds: Double = 0.1
     
     func start(intervalSeconds: Double) {
         timer?.invalidate()
@@ -27,7 +27,8 @@ class TimerService : TimerServiceProtocol{
         timer?.invalidate()
     }
     
-    @objc func timerTick(){
+    @objc
+    private func timerTick(){
         delegate?.timerTick()
     }
     

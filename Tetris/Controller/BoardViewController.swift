@@ -9,14 +9,14 @@ import SwiftUI
 
 class BoardViewController: UIViewController{
     
-    var gameService : GameServiceProtocol! = nil
+    private var gameService : GameServiceProtocol! = nil
     
-    var boardPositionAndSubviewRelation: [String: UIView] = [:]
-    var lastTetrominoPosition: TetrominoSquares?
-    var squareSize: Float = 0
-    var rowNumber: Int = 0
-    var columnNumber: Int = 0
-    var playableBoardView: UIView!
+    private var boardPositionAndSubviewRelation: [String: UIView] = [:]
+    private var lastTetrominoPosition: TetrominoSquares?
+    private var squareSize: Float = 0
+    private var rowNumber: Int = 0
+    private var columnNumber: Int = 0
+    private var playableBoardView: UIView!
     
     override func viewDidAppear(_ animated: Bool) {
         loadDependencies()
@@ -30,7 +30,7 @@ class BoardViewController: UIViewController{
         self.gameService = gameService ?? ServiceLocator.shared.getService()! as GameServiceProtocol
     }
     
-    func defineBoard(){
+    private func defineBoard(){
         let startingSquareSize: Float = 28
         
         let gameHeight: Float = Float(self.view.frame.size.height)
@@ -52,7 +52,7 @@ class BoardViewController: UIViewController{
         gameService.initGame(rows: rowNumber, columns: columnNumber)
     }
     
-    func drawBoardGrid(){
+    private func drawBoardGrid(){
         let gridView: GridView = GridView()
         gridView.frame = playableBoardView.bounds
         playableBoardView.addSubview(gridView)
@@ -71,7 +71,7 @@ class BoardViewController: UIViewController{
         boardPositionAndSubviewRelation.removeAll()
     }
     
-    func eraseCurrentTetrominoLastPosition(){
+    private func eraseCurrentTetrominoLastPosition(){
         if lastTetrominoPosition != nil{
             eraseSquare(lastTetrominoPosition!.firstSquare)
             eraseSquare(lastTetrominoPosition!.secondSquare)
@@ -80,21 +80,21 @@ class BoardViewController: UIViewController{
         }
     }
     
-    func eraseSquare(_ square: Square){
+    private func eraseSquare(_ square: Square){
         let squareViewKey = squareKey(square)
         let squareView = boardPositionAndSubviewRelation[squareViewKey]
         boardPositionAndSubviewRelation.removeValue(forKey: squareViewKey)
         squareView?.removeFromSuperview()
     }
     
-    func drawTetromino(_ tetromino: Tetromino){
+    private func drawTetromino(_ tetromino: Tetromino){
         drawSquare(tetromino.squares.firstSquare, gameService.currentTetromino!.color)
         drawSquare(tetromino.squares.secondSquare, gameService.currentTetromino!.color)
         drawSquare(tetromino.squares.thirdSquare, gameService.currentTetromino!.color)
         drawSquare(tetromino.squares.fourthSquare, gameService.currentTetromino!.color)
     }
     
-    func drawSquare(_ square: Square, _ color: UIColor){
+    private func drawSquare(_ square: Square, _ color: UIColor){
         let squareView = TetrominoDrawer.generateSquareView(
             x: (Float(square.column) * squareSize),
             y: (Float(square.row) * squareSize),
@@ -105,7 +105,7 @@ class BoardViewController: UIViewController{
         boardPositionAndSubviewRelation[squareKey(square)] = squareView
     }
     
-    func squareKey(_ square: Square) -> String{
+    private func squareKey(_ square: Square) -> String{
         return "\(square.row)_\(square.column)"
     }
     

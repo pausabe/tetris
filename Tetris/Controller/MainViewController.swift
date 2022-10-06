@@ -10,13 +10,13 @@ import SwiftUI
 
 class MainViewController: UIViewController, GameServiceDelegate {
 
-    var boardViewController = BoardViewController()
-    var nextTetrominoViewController = NextTetrominoViewController()
-    var mediaPlayerService : MediaPlayerServiceProtocol! = nil
-    var gameService : GameServiceProtocol! = nil
-    var buttonFireModeTimer: Timer?
-    var fireTimerInterval: Float = 0.1
-    let defaults = UserDefaults.standard
+    private var boardViewController = BoardViewController()
+    private var nextTetrominoViewController = NextTetrominoViewController()
+    private var mediaPlayerService : MediaPlayerServiceProtocol! = nil
+    private var gameService : GameServiceProtocol! = nil
+    private var buttonFireModeTimer: Timer?
+    private var fireTimerInterval: Float = 0.1
+    private let defaults = UserDefaults.standard
 
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var gameView: UIView!
@@ -52,7 +52,7 @@ class MainViewController: UIViewController, GameServiceDelegate {
         setScoreLabels()
     }
     
-    func addServicesToLocator(){
+    private func addServicesToLocator(){
         ServiceLocator.shared.addService(service: TimerService())
         ServiceLocator.shared.addService(service: BoardService())
         ServiceLocator.shared.addService(service: TetrominoHelper())
@@ -68,24 +68,24 @@ class MainViewController: UIViewController, GameServiceDelegate {
         self.gameService.delegate = self
     }
     
-    func setScoreLabels(){
+    private func setScoreLabels(){
         bestScoreLabel.text = String(defaults.integer(forKey: StoreKeys.bestScore))
         currentScoreLabel.text = String(0)
     }
     
-    @objc func leftButtonPressed(_ sender: UIButton) {
+    @objc private func leftButtonPressed(_ sender: UIButton) {
         askMovement(.left)
     }
     
-    @objc func rightButtonPressed(_ sender: UIButton) {
+    @objc private func rightButtonPressed(_ sender: UIButton) {
         askMovement(.right)
     }
     
-    @objc func downButtonPressed(_ sender: UIButton) {
+    @objc private func downButtonPressed(_ sender: UIButton) {
         askMovement(.down)
     }
     
-    func askMovement(_ direction: MovementDirectionEnum){
+    private func askMovement(_ direction: MovementDirectionEnum){
         var selector: Selector?
         switch direction {
         case .left:
@@ -106,27 +106,27 @@ class MainViewController: UIViewController, GameServiceDelegate {
         }
     }
     
-    @objc func askLeftMovement() {
+    @objc private func askLeftMovement() {
         gameService.moveLeft()
     }
     
-    @objc func askRightMovement() {
+    @objc private func askRightMovement() {
         gameService.moveRight()
     }
     
-    @objc func askDownMovement() {
+    @objc private func askDownMovement() {
         gameService.moveDown()
     }
     
-    func askRotation(){
+    private func askRotation(){
         gameService.rotate()
     }
 
-    @objc func buttonReleased() {
+    @objc private func buttonReleased() {
         buttonFireModeTimer?.invalidate()
     }
 
-    @IBAction func startButtonPressed(_ sender: UIButton) {
+    @IBAction private func startButtonPressed(_ sender: UIButton) {
         if gameService.currentState == .stopped{
             gameOverButton.isHidden = true
             if defaults.bool(forKey: StoreKeys.audioIsEnabled){
@@ -140,11 +140,11 @@ class MainViewController: UIViewController, GameServiceDelegate {
         }
     }
     
-    @IBAction func settingsButtonPressed(_ sender: UIButton) {
+    @IBAction private func settingsButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: SegueKeys.goToSettings, sender: self)
     }
     
-    @IBAction func rotateButtonPressed(_ sender: UIButton) {
+    @IBAction private func rotateButtonPressed(_ sender: UIButton) {
         askMovement(.rotation)
     }
     

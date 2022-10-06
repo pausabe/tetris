@@ -24,12 +24,12 @@ class BoardService : BoardServiceProtocol{
         }
     }
     
-    func declareTetrominoStartPosition(){
+    private func declareTetrominoStartPosition(){
         tetrominoStartingRow = 0
         tetrominoStartingColumn = Int(floor(Double(board!.columnNumber / 2)))
     }
     
-    func clearTetrominoInBoard(_ squares: TetrominoSquares){
+    private func clearTetrominoInBoard(_ squares: TetrominoSquares){
         updateTetrominoSquares(squares, boardPositionFill: nil)
     }
     
@@ -37,14 +37,15 @@ class BoardService : BoardServiceProtocol{
         return moveTetromino(original: nil, desired: squares, color: color)
     }
     
-    func updateTetrominoSquares(_ squares: TetrominoSquares, boardPositionFill: UIColor?){
+    private func updateTetrominoSquares(_ squares: TetrominoSquares, boardPositionFill: UIColor?){
         board!.map[squares.firstSquare.row][squares.firstSquare.column] = boardPositionFill
         board!.map[squares.secondSquare.row][squares.secondSquare.column] = boardPositionFill
         board!.map[squares.thirdSquare.row][squares.thirdSquare.column] = boardPositionFill
         board!.map[squares.fourthSquare.row][squares.fourthSquare.column] = boardPositionFill
     }
     
-    @discardableResult func moveTetromino(original: TetrominoSquares?, desired: TetrominoSquares, color: UIColor?) -> Bool{
+    @discardableResult
+    func moveTetromino(original: TetrominoSquares?, desired: TetrominoSquares, color: UIColor?) -> Bool{
         if tetrominoIsInCorrectPlace(original: original, desired: desired){
             if original != nil{
                 clearTetrominoInBoard(original!)
@@ -55,7 +56,7 @@ class BoardService : BoardServiceProtocol{
         return false
     }
     
-    func tetrominoIsInCorrectPlace(original: TetrominoSquares?, desired: TetrominoSquares) -> Bool {
+    private func tetrominoIsInCorrectPlace(original: TetrominoSquares?, desired: TetrominoSquares) -> Bool {
         if !tetrominoSquareIsAvailable(original, desired.firstSquare){
             return false
         }
@@ -71,7 +72,7 @@ class BoardService : BoardServiceProtocol{
         return true
     }
     
-    func tetrominoSquareIsAvailable(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool {
+    private func tetrominoSquareIsAvailable(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool {
          if desiredSquare.row < 0 || desiredSquare.column < 0 {
             return false
         }
@@ -84,7 +85,7 @@ class BoardService : BoardServiceProtocol{
         return true
     }
     
-    func desiredSquareIsFromOriginalTetromino(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool{
+    private func desiredSquareIsFromOriginalTetromino(_ originalSquares: TetrominoSquares?, _ desiredSquare: Square) -> Bool{
         if originalSquares == nil{
             return false
         }
@@ -109,7 +110,7 @@ class BoardService : BoardServiceProtocol{
         return rowsCleared
     }
     
-    func tetrominoRowsFromUpToDown(_ squares: TetrominoSquares) -> Array<Int>{
+    private func tetrominoRowsFromUpToDown(_ squares: TetrominoSquares) -> Array<Int>{
         var rows: Array<Int> = []
         rows.append(squares.firstSquare.row)
         if !rows.contains(squares.secondSquare.row){
@@ -125,7 +126,7 @@ class BoardService : BoardServiceProtocol{
         return rows
     }
     
-    func rowIsFull(_ row: Int) -> Bool {
+    private func rowIsFull(_ row: Int) -> Bool {
         for i in 0...(board!.columnNumber - 1){
             if board!.map[row][i] == nil {
                 return false
@@ -134,7 +135,7 @@ class BoardService : BoardServiceProtocol{
         return true
     }
     
-    func clearRowAndDescendAboveSquares(_ row: Int){
+    private func clearRowAndDescendAboveSquares(_ row: Int){
         clearRow(row)
         let firstRowToDescend = row - 1
         for rowIndex in (0...firstRowToDescend).reversed(){
@@ -147,7 +148,7 @@ class BoardService : BoardServiceProtocol{
         }
     }
     
-    func clearRow(_ row: Int){
+    private func clearRow(_ row: Int){
         for i in 0...(board!.columnNumber - 1){
             board!.map[row][i] = nil
         }

@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    let defaults = UserDefaults.standard
+    private let defaults = UserDefaults.standard
     
     @IBOutlet weak var audioSwitch: UISwitch!
     

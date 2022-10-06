@@ -21,13 +21,13 @@ protocol GameServiceDelegate{
 
 public class GameService : GameServiceProtocol, TimerServiceDelegate {
     
-    var timerService: TimerServiceProtocol! = nil
-    var boardService: BoardServiceProtocol! = nil
-    var tetrominoHelper: TetrominoHelperProtocol! = nil
+    private var timerService: TimerServiceProtocol! = nil
+    private var boardService: BoardServiceProtocol! = nil
+    private var tetrominoHelper: TetrominoHelperProtocol! = nil
     
     var delegate: GameServiceDelegate?
-    var startingTimerIntervalSeconds: Double = 1.5
-    var incrementTimerSeconds: Double = 0.01
+    private var startingTimerIntervalSeconds: Double = 1.5
+    private var incrementTimerSeconds: Double = 0.01
     var nextTetromino: Tetromino?
     var currentTetromino: Tetromino?
     var currentState = GameState.stopped
@@ -57,17 +57,18 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         }
     }
     
-    @discardableResult func startNewTetromino() -> Bool{
+    @discardableResult
+    private func startNewTetromino() -> Bool{
         currentTetromino = nextTetromino
         nextTetromino = tetrominoHelper.newRandomTetromino(boardService.tetrominoStartingRow, boardService.tetrominoStartingColumn)
         return boardService.setNewTetrominoInBoard(squares: currentTetromino!.squares, color: currentTetromino?.color)
     }
     
-    func getBoardRows() -> Int {
+    private func getBoardRows() -> Int {
         boardService.board!.rowNumber
     }
     
-    func getBoardColumns() -> Int {
+    private func getBoardColumns() -> Int {
         boardService.board!.columnNumber
     }
     
@@ -86,12 +87,12 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         }
     }
     
-    func setNewTetromino(){
+    private func setNewTetromino(){
         timerService.incrementSpeed(incrementTimerSeconds)
         delegate?.newTetrominoAdded()
     }
     
-    func setGameOver(){
+    private func setGameOver(){
         timerService.stop()
         boardService.clearBoard()
         currentState = .stopped
@@ -114,7 +115,8 @@ public class GameService : GameServiceProtocol, TimerServiceDelegate {
         return move(.rotation)
     }
     
-    @discardableResult func move(_ direction: MovementDirectionEnum) -> Bool{
+    @discardableResult
+    private func move(_ direction: MovementDirectionEnum) -> Bool{
         if currentState == .running && boardService.moveTetromino(
             original: currentTetromino!.squares,
             desired: currentTetromino!.getDesiredSquares(direction),

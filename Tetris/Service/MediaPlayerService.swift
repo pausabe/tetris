@@ -9,7 +9,7 @@ import Foundation
 import AVFoundation
 
 class MediaPlayerService : MediaPlayerServiceProtocol{
-    var audioPlayer : AVAudioPlayer!
+    private var audioPlayer : AVAudioPlayer!
     
     static var mp3Extension = "mp3"
     
